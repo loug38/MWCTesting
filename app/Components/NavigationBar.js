@@ -11,7 +11,7 @@ import ViewContainer from './ViewContainer';
 //navBarTitle: In the center, the title of the current page
 //rightWord: the word on the top right (generally "add")
 //nav: the navigator reference from where its coming from so you
-//can back out to previous screen.
+//can back out to previous screen (pop screen off the stack.)
 
 class NavigationBar extends Component{
     render(){

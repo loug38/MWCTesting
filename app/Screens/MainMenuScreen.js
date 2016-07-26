@@ -2,11 +2,15 @@ import React, {Component} from 'react';
 import {StyleSheet, AppRegistry, Text, View,TouchableOpacity, ListView,
         Navigator,} from 'react-native';
 
+//Custom Components
 import ViewContainer from '../../app/Components/ViewContainer';
 import StatusBarFiller from '../../app/Components/StatusBarFiller';
 import NavigationBar from '../../app/Components/NavigationBar';
+
+//packages
 import Icon from 'react-native-vector-icons/FontAwesome';
 
+//globals
 const menu = [
     {item: "Contacts", icon: "group"},
     {item: "Financial", icon: "money"},
@@ -18,6 +22,10 @@ const menu = [
 //Main navigation for the app
 class MainMenuScreen extends Component {
 
+    //Necessary constructor for ListView. The code is really wonky,
+    //because facebook still hasn't implemented a better syntax for
+    //a listview but this does work completely, so don't worry about it
+    //too much. Still easier than doing it natively.
     constructor(props){
         super(props);
         var ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 != r2});
@@ -26,24 +34,17 @@ class MainMenuScreen extends Component {
         };
     }
 
-    render(){
-        return(
-            <ViewContainer>
-                <StatusBarFiller backgroundColor="#007AFF" />
-                <NavigationBar  backgroundColor="#007AFF"
-                                leftWord="Logout"
-                                title="Main Menu"
-                                rightWord=""
-                                nav={this.props.navigator}
-                />
-                <ListView
-                    dataSource={this.state.menuDataSource}
-                    renderRow={(menuItem) => {return this._renderMenuRow(menuItem)}}
-                />
-            </ViewContainer>
-        );
+    _navigateToMenuItem(menuItem){
+        if (menuItem.item == "Contacts")
+        {
+            this.props.navigator.push({
+                ident: "Contacts",
+            });
+        }
     }
 
+    // Each of the actual items in the list in format:
+    // Icon "Word" >
     _renderMenuRow(menuItem){
         return(
             <TouchableOpacity style={styles.menuRow} onPress={(event) => this._navigateToMenuItem(menuItem)}>
@@ -57,13 +58,24 @@ class MainMenuScreen extends Component {
         )
     }
 
-    _navigateToMenuItem(menuItem){
-        if (menuItem.item == "Contacts")
-        {
-            this.props.navigator.push({
-                ident: "Contacts",
-            });
-        }
+    render(){
+        return(
+            <ViewContainer>
+                {/* Status bar and navigation bar*/}
+                <StatusBarFiller backgroundColor="#007AFF" />
+                <NavigationBar  backgroundColor="#007AFF"
+                                leftWord="Logout"
+                                title="Main Menu"
+                                rightWord=""
+                                nav={this.props.navigator}
+                />
+                {/* BODY */}
+                <ListView
+                    dataSource={this.state.menuDataSource}
+                    renderRow={(menuItem) => {return this._renderMenuRow(menuItem)}}
+                />
+            </ViewContainer>
+        );
     }
 }
 

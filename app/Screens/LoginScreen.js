@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { StyleSheet, Text, View, TextInput, TouchableOpacity, Image,
-         Dimensions, AlertIOS, DatePickerIOS } from 'react-native';
+         Dimensions} from 'react-native';
 
 import StatusBarFiller from '../Components/StatusBarFiller';
 import ViewContainer from '../Components/ViewContainer';
@@ -22,6 +22,10 @@ class LoginScreen extends Component{
         });
     }
 
+    //Below I wrap the TextInputs with Views in order to have just a
+    //line under the text input instead of a border all around.
+    //borderBottomWidth doesn't work for TextInput but it does for
+    //Views. Will change when facebook fixes the bug.
     render(){
         return(
             <View style={styles.container}>
@@ -49,7 +53,7 @@ class LoginScreen extends Component{
                     </Button>
                     <Button onPress={() => this._navigateToNewUser()}
                         style={styles.newUserButton}>
-                        Create Account
+                        New Account
                     </Button>
                     <Image style={styles.dcLogo}
                         source={require('../../img/datacareLogo.png')}
@@ -89,7 +93,7 @@ const styles = StyleSheet.create({
         overflow: 'hidden',
         marginTop: 40,
         padding: 5,
-        width: 150,
+        width: 250,
         fontSize: 30,
         color: 'white',
         backgroundColor: '#007AFF',

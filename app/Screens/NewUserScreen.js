@@ -2,16 +2,21 @@ import React, { Component } from 'react';
 import { StyleSheet, Text, View, TextInput, TouchableOpacity, Image,
          Dimensions} from 'react-native';
 
+//Custom components
 import ViewContainer from '../Components/ViewContainer';
 import StatusBarFiller from '../Components/StatusBarFiller';
 import NavigationBar from '../Components/NavigationBar';
 
+//packages
 import Button from 'react-native-button';
 import DatePicker from 'react-native-datepicker';
 
+//globals
 const windwo = Dimensions.get('window');
 
 class NewUserScreen extends Component{
+
+    //Necessary constructor for datepicker
     constructor(props){
         super(props);
         this.state ={
@@ -23,9 +28,14 @@ class NewUserScreen extends Component{
         this.props.navigator.pop
     }
 
+    //Below I wrap the TextInputs with Views in order to have just a
+    //line under the text input instead of a border all around.
+    //borderBottomWidth doesn't work for TextInput but it does for
+    //Views. Will change when facebook fixes the bug.
     render(){
         return(
             <ViewContainer>
+                {/* Status bar and navigation bar*/}
                 <StatusBarFiller backgroundColor="#007AFF" />
                 <NavigationBar  backgroundColor="#007AFF"
                                 leftWord="Back"
@@ -33,6 +43,9 @@ class NewUserScreen extends Component{
                                 rightWord=""
                                 nav={this.props.navigator}
                 />
+                {/* BODY */}
+                {/* DatePicker for documentation check out
+                    https://github.com/xgfe/react-native-datepicker*/}
                 <Text style={styles.fieldDescription}>
                     Birthdate
                 </Text>
@@ -49,6 +62,11 @@ class NewUserScreen extends Component{
                         onDateChange={(date) => {this.setState({date: date});}}
                     />
                 </View>
+
+                {/* Had to wrap each field individually since if you're more
+                    than 2 views deep TextInput is invisible (bug).       */}
+
+                {/* Claim Number Field */}
                 <Text style={styles.fieldDescription}>
                     Claim Number
                 </Text>
@@ -58,6 +76,8 @@ class NewUserScreen extends Component{
                         onChangeText={(text) => this.setState({text})}
                     />
                 </View>
+
+                {/* Social Security Field */}
                 <Text style={styles.fieldDescription}>
                     Social Security Number
                 </Text>
@@ -67,6 +87,8 @@ class NewUserScreen extends Component{
                         onChangeText={(text) => this.setState({text})}
                     />
                 </View>
+
+                {/* Username field */}
                 <Text style={styles.fieldDescription}>
                     Username
                 </Text>
@@ -76,6 +98,8 @@ class NewUserScreen extends Component{
                         onChangeText={(text) => this.setState({text})}
                     />
                 </View>
+
+                {/* Password fields */}
                 <Text style={styles.fieldDescription}>
                     Password
                 </Text>
@@ -91,6 +115,7 @@ class NewUserScreen extends Component{
                 </Text>
                 <View style={styles.textInputWrapper}>
                     <TextInput style ={styles.textFields}
+                        secureTextEntry={true}
                         placeholder="Password"
                         onChangeText={(text) => this.setState({text})}
                     />

@@ -1,12 +1,15 @@
 import React, {Component} from 'react';
 import {Text, View, StyleSheet, ListView, TouchableOpacity} from 'react-native';
 
-import Icon from 'react-native-vector-icons/FontAwesome';
-
+//Custom Components
 import ViewContainer from '../../app/Components/ViewContainer';
 import StatusBarFiller from '../../app/Components/StatusBarFiller';
 import NavigationBar from '../../app/Components/NavigationBar';
 
+//Packages
+import Icon from 'react-native-vector-icons/FontAwesome';
+
+//globals
 const contacts = [
     {name: "Hal Jordan", job: "Claims Examiner", contact:"gl@gmail.com"},
     {name: "Barry Allen", job: "Physician", contact:"tf@gmail.com"},
@@ -16,12 +19,33 @@ const contacts = [
 ]
 
 class ContactsScreen extends Component{
+
+    //Necessary constructor for ListView. The code is really wonky,
+    //because facebook still hasn't implemented a better syntax for
+    //a listview but this does work completely, so don't worry about it
+    //too much. Still easier than doing it natively.
     constructor(props){
         super(props);
         var ds = new ListView.DataSource({rowHasChanged: (r1,r2) => r1 != r2});
         this.state ={
             contactsDataSource: ds.cloneWithRows(contacts),
         };
+    }
+
+    _renderContactRow(contact){
+        return(
+            <TouchableOpacity style={styles.contactRow} onPress={console.log("clicked")}>
+                <Icon name="user" size={30} style={styles.contactIcon} />
+                <View style={styles.info}>
+                    <Text style={styles.contactJob}>
+                        {contact.job}
+                    </Text>
+                    <Text style={styles.contactName}>
+                        {contact.name}
+                    </Text>
+                </View>
+            </TouchableOpacity>
+        )
     }
 
     render(){
@@ -40,22 +64,6 @@ class ContactsScreen extends Component{
                 />
             </ViewContainer>
         );
-    }
-
-    _renderContactRow(contact){
-        return(
-            <TouchableOpacity style={styles.contactRow} onPress={console.log("clicked")}>
-                <Icon name="user" size={30} style={styles.contactIcon} />
-                <View style={styles.info}>
-                    <Text style={styles.contactJob}>
-                        {contact.job}
-                    </Text>
-                    <Text style={styles.contactName}>
-                        {contact.name}
-                    </Text>
-                </View>
-            </TouchableOpacity>
-        )
     }
 }
 
