@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { StyleSheet, Text, View, TextInput, TouchableOpacity, Image,
-         Dimensions} from 'react-native';
+         Dimensions, Alert} from 'react-native';
 
 //Custom components
 import ViewContainer from '../Components/ViewContainer';
@@ -12,32 +12,73 @@ import Button from 'react-native-button';
 import DatePicker from 'react-native-datepicker';
 
 //globals
-const windwo = Dimensions.get('window');
+const window = Dimensions.get('window');
+const pseudoData = { birthday: "10201990", claimNumber:"1", ssn:"123456789" };
 
-class NewUserScreen extends Component{
+var colorTheme = '#007ACC';
+
+
+class NewUserScreen extends Component
+{
 
     //Necessary constructor for datepicker
-    constructor(props){
+    constructor(props)
+    {
         super(props);
-        this.state ={
+        this.state =
+        {
             date: "",
+            claimNumber: "",
+            socialSecurityNumber: "",
+            username: "",
+            password: "",
+            passwordConf: "",
         }
     }
 
-    _navigateToLogin(){
-        this.props.navigator.pop
+    _navigateToLogin() { this.props.navigator.pop; }
+
+    _confirmAccountCreation()
+    {
+        if (this.state.password != this.state.passwordConf)
+        {
+            this._throwAlert('Passwords don\'t match');
+        }
+
+        else if (this.state.claimNumber != pseudoData.claimNumber)
+        {
+            this._throwAlert('Couldn\'t find that claim number');
+        }
+
+        else if (this.state.socialSecurityNumber != pseudoData.ssn)
+        {
+            this._throwAlert('Social Security Number does not match');
+        }
+
+        else this.props.navigator.pop();
+    }
+
+    _throwAlert(message)
+    {
+        Alert.alert
+        (
+            'Error creating account',
+            message,
+            [{text: 'OK', onPress:() => console.log('OK')},]
+        )
     }
 
     //Below I wrap the TextInputs with Views in order to have just a
     //line under the text input instead of a border all around.
     //borderBottomWidth doesn't work for TextInput but it does for
     //Views. Will change when facebook fixes the bug.
-    render(){
-        return(
+    render()
+    {
+        return (
             <ViewContainer>
                 {/* Status bar and navigation bar*/}
-                <StatusBarFiller backgroundColor="#007AFF" />
-                <NavigationBar  backgroundColor="#007AFF"
+                <StatusBarFiller backgroundColor={colorTheme} />
+                <NavigationBar  backgroundColor={colorTheme}
                                 leftWord="Back"
                                 title="Create Account"
                                 rightWord=""
@@ -73,10 +114,9 @@ class NewUserScreen extends Component{
                 <View style={styles.textInputWrapper}>
                     <TextInput style ={styles.textFields}
                         placeholder="xxxxxxx-xxxx"
-                        onChangeText={(text) => this.setState({text})}
+                        onChangeText={(claimNumber) => this.setState({claimNumber})}
                     />
                 </View>
-
                 {/* Social Security Field */}
                 <Text style={styles.fieldDescription}>
                     Social Security Number
@@ -84,7 +124,7 @@ class NewUserScreen extends Component{
                 <View style={styles.textInputWrapper}>
                     <TextInput style ={styles.textFields}
                         placeholder="xxx-xx-xxxx"
-                        onChangeText={(text) => this.setState({text})}
+                        onChangeText={(socialSecurityNumber) => this.setState({socialSecurityNumber})}
                     />
                 </View>
 
@@ -95,7 +135,7 @@ class NewUserScreen extends Component{
                 <View style={styles.textInputWrapper}>
                     <TextInput style ={styles.textFields}
                         placeholder="Username"
-                        onChangeText={(text) => this.setState({text})}
+                        onChangeText={(username) => this.setState({username})}
                     />
                 </View>
 
@@ -107,7 +147,7 @@ class NewUserScreen extends Component{
                     <TextInput style ={styles.textFields}
                         secureTextEntry={true}
                         placeholder="Password"
-                        onChangeText={(text) => this.setState({text})}
+                        onChangeText={(password) => this.setState({password})}
                     />
                 </View>
                 <Text style={styles.fieldDescription}>
@@ -117,10 +157,10 @@ class NewUserScreen extends Component{
                     <TextInput style ={styles.textFields}
                         secureTextEntry={true}
                         placeholder="Password"
-                        onChangeText={(text) => this.setState({text})}
+                        onChangeText={(passwordConf) => this.setState({passwordConf})}
                     />
                 </View>
-                <Button onPress={() => this.props.navigator.pop()}
+                <Button onPress={() => this._confirmAccountCreation()}
                     style={styles.createAccountButton}>
                         Create Account
                 </Button>
@@ -130,21 +170,24 @@ class NewUserScreen extends Component{
 }
 
 const styles = StyleSheet.create({
-    fieldDescription:{
+    fieldDescription:
+    {
         color: '#777777',
         paddingTop: 20,
         fontSize: 10,
         paddingLeft: 20,
     },
 
-    container:{
+    container:
+    {
         padding: 20,
         flexDirection: 'column',
         alignItems: 'flex-start',
         justifyContent: 'flex-start',
     },
 
-    textInputWrapper: {
+    textInputWrapper:
+    {
         height: 40,
         width: (window.width - 50),
         marginLeft: 20,
@@ -153,20 +196,22 @@ const styles = StyleSheet.create({
         borderBottomColor: '#aaaaaa',
     },
 
-    textFields:{
+    textFields:
+    {
         height: 40,
     },
 
-    createAccountButton:{
+    createAccountButton:
+    {
         borderRadius: 8,
         overflow: 'hidden',
-        marginTop: 80,
+        marginTop: 60,
         marginLeft: 50,
         marginRight: 50,
         padding: 5,
         fontSize: 15,
         color: 'white',
-        backgroundColor: '#007AFF',
+        backgroundColor: '#007ACC',
     },
 });
 

@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Text, View, StyleSheet, ListView, TouchableOpacity} from 'react-native';
+import {Text, View, StyleSheet, ListView, TouchableOpacity, Alert} from 'react-native';
 
 //Custom Components
 import ViewContainer from '../../app/Components/ViewContainer';
@@ -10,6 +10,7 @@ import NavigationBar from '../../app/Components/NavigationBar';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
 //globals
+var colorTheme = '#007ACC';
 const contacts = [
     {name: "Hal Jordan", job: "Claims Examiner", contact:"gl@gmail.com"},
     {name: "Barry Allen", job: "Physician", contact:"tf@gmail.com"},
@@ -32,6 +33,14 @@ class ContactsScreen extends Component{
         };
     }
 
+    _showInfoAboutContact(contact){
+        Alert.alert (
+            contact.job,
+            'They do stuff that would be explained here if I knew what they were. ',
+            [{text: 'OK', onPress:() => console.log('OK')},]
+        )
+    }
+
     _renderContactRow(contact){
         return(
             <TouchableOpacity style={styles.contactRow} onPress={console.log("clicked")}>
@@ -44,6 +53,8 @@ class ContactsScreen extends Component{
                         {contact.name}
                     </Text>
                 </View>
+                <View style={{flex: 1}}/>
+                <Icon name="info-circle" size={25} style={styles.infoIcon}  onPress={(event) => this._showInfoAboutContact(contact)}/>
             </TouchableOpacity>
         )
     }
@@ -51,8 +62,8 @@ class ContactsScreen extends Component{
     render(){
         return(
             <ViewContainer>
-                <StatusBarFiller backgroundColor="#007AFF" />
-                <NavigationBar backgroundColor="#007AFF"
+                <StatusBarFiller backgroundColor={colorTheme} />
+                <NavigationBar backgroundColor={colorTheme}
                                 leftWord="Back"
                                 title="Contacts"
                                 rightWord=""
@@ -79,8 +90,14 @@ const styles = StyleSheet.create({
         height: 40,
     },
 
+    infoIcon:{
+        paddingTop: 5,
+        paddingRight: 20,
+        color: '#007ACC'
+    },
+
     contactIcon:{
-        color: '#007AFF',
+        color: '#007ACC',
         marginLeft: 20,
         paddingRight: 20,
         paddingTop: 5,

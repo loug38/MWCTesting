@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { StyleSheet, Text, View, TextInput, TouchableOpacity, Image,
-         Dimensions} from 'react-native';
+         Dimensions, Navigator} from 'react-native';
 
 import StatusBarFiller from '../Components/StatusBarFiller';
 import ViewContainer from '../Components/ViewContainer';
@@ -8,6 +8,7 @@ import Button from '../../node_modules/react-native-button';
 import DatePicker from 'react-native-datepicker';
 
 const window = Dimensions.get('window');
+var colorTheme = '#007ACC';
 
 class LoginScreen extends Component{
     _navigateToMainMenu(){
@@ -19,6 +20,7 @@ class LoginScreen extends Component{
     _navigateToNewUser(){
         this.props.navigator.push({
             ident: "NewUser",
+            sceneConfig: Navigator.SceneConfigs.VerticalSwipeJump,
         });
     }
 
@@ -29,7 +31,7 @@ class LoginScreen extends Component{
     render(){
         return(
             <View style={styles.container}>
-                <StatusBarFiller backgroundColor="#007AFF" />
+                <StatusBarFiller backgroundColor={colorTheme}/>
                     <Image style={styles.logo}
                         source={require('../../img/loginlogo1.png')}
                     />
@@ -46,8 +48,9 @@ class LoginScreen extends Component{
                             placeholder="Password"
                         />
                     </View>
-                    {/*Prompt user for case ID number*/}
+
                     <Button onPress={() => this._navigateToMainMenu()}
+                        backgroundColor={colorTheme}
                         style={styles.loginButton}>
                         Login
                     </Button>
@@ -96,7 +99,7 @@ const styles = StyleSheet.create({
         width: 250,
         fontSize: 30,
         color: 'white',
-        backgroundColor: '#007AFF',
+        backgroundColor: '#007ACC',
     },
 
     newUserButton: {
@@ -106,7 +109,7 @@ const styles = StyleSheet.create({
         padding: 5,
         fontSize: 15,
         color: 'white',
-        backgroundColor: '#007AFF'
+        backgroundColor: '#007ACC'
     },
 
     textInputWrapper: {

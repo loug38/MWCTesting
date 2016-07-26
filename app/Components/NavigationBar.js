@@ -21,23 +21,24 @@ class NavigationBar extends Component{
                 <View style={{backgroundColor: this.props.backgroundColor,
                             height: 60,
                             flexDirection: 'row',
-                            paddingTop: 25}}>
-                    <TouchableOpacity onPress={() => this.props.nav.pop()}>
-                        <Icon name='chevron-left' style={styles.backIcon}>
-                            <Text style={styles.navBarButtonText}>
-                                {`   ${this.props.leftWord}`}
-                            </Text>
-                        </Icon>
-                    </TouchableOpacity>
-                    <Text style={styles.navBarTitle}>
-                        {this.props.title}
-                    </Text>
-                    <Text style={styles.navBarButtonText}>
-                        {this.props.rightWord}
-                    {/* This is a transparent icon to help center the title
-                        can ignore it for now. */}
-                    </Text>
-                        <Icon name='chevron-right' style={styles.forwardIcon}/>
+                            paddingTop: 25}}
+                >
+                <TouchableOpacity onPress={() => this.props.nav.pop()}>
+                    <Icon name='chevron-left' style={styles.backIcon}>
+                        <Text style={styles.navBarButtonText}>
+                            {`   ${this.props.leftWord}`}
+                        </Text>
+                    </Icon>
+                </TouchableOpacity>
+                <Text style={styles.navBarTitle}>
+                    {this.props.title}
+                </Text>
+                <Text style={styles.navBarButtonText}>
+                    {this.props.rightWord}
+                </Text>
+                {/* This is a transparent icon to help center the title
+                    can ignore it for now. */}
+                <Icon name='chevron-right' style={styles.forwardIcon}/>
                 </View>
             </View>
         );

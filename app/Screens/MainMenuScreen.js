@@ -9,6 +9,8 @@ import NavigationBar from '../../app/Components/NavigationBar';
 
 //packages
 import Icon from 'react-native-vector-icons/FontAwesome';
+const colorTheme = '#007ACC';
+
 
 //globals
 const menu = [
@@ -62,8 +64,8 @@ class MainMenuScreen extends Component {
         return(
             <ViewContainer>
                 {/* Status bar and navigation bar*/}
-                <StatusBarFiller backgroundColor="#007AFF" />
-                <NavigationBar  backgroundColor="#007AFF"
+                <StatusBarFiller backgroundColor={colorTheme} />
+                <NavigationBar  backgroundColor={colorTheme}
                                 leftWord="Logout"
                                 title="Main Menu"
                                 rightWord=""
@@ -111,7 +113,7 @@ const styles = StyleSheet.create({
     },
 
     prependIcon: {
-        color: '#0071FF',
+        color: '#007ACC',
         height: 30,
         width: 30,
         marginLeft: 20,
@@ -119,7 +121,7 @@ const styles = StyleSheet.create({
     },
 
     menuMoreIcon: {
-        color: '#007AFF',
+        color: '#007ACC',
         height: 20,
         width: 20,
         marginRight: 20,
