@@ -20,8 +20,8 @@ class ContactsScreen extends Component{
         super(props);
         var ds = new ListView.DataSource({rowHasChanged: (r1,r2) => r1 != r2});
         this.state ={
-            contactsDataSource: ds.cloneWithRows(contacts);
-        }
+            contactsDataSource: ds.cloneWithRows(contacts),
+        };
     }
 
     render(){
@@ -44,13 +44,48 @@ class ContactsScreen extends Component{
 
     _renderContactRow(contact){
         return(
-            <TouchableOpacity style
+            <TouchableOpacity style={styles.contactRow} onPress={console.log("clicked")}>
+                <Icon name="user" size={30} style={styles.contactIcon} />
+                <View style={styles.info}>
+                    <Text style={styles.contactJob}>
+                        {contact.job}
+                    </Text>
+                    <Text style={styles.contactName}>
+                        {contact.name}
+                    </Text>
+                </View>
+            </TouchableOpacity>
         )
     }
 }
 
 const styles = StyleSheet.create({
+    contactRow: {
+        marginTop: 20,
+        flexDirection: 'row',
+        height: 40,
+    },
 
+    info: {
+        flexDirection: 'column',
+        height: 40,
+    },
+
+    contactIcon:{
+        color: '#007AFF',
+        marginLeft: 20,
+        paddingRight: 20,
+        paddingTop: 5,
+    },
+
+    contactJob:{
+        fontSize: 20,
+    },
+
+    contactName:{
+        fontSize: 15,
+        color: '#999999'
+    },
 });
 
 module.exports = ContactsScreen;

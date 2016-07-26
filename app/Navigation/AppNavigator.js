@@ -3,6 +3,7 @@ import {StyleSheet, Navigator, View, Text} from 'react-native';
 import MainMenuScreen from '../../app/Screens/MainMenuScreen';
 import LoginScreen from '../../app/Screens/LoginScreen';
 import ContactsScreen from '../../app/Screens/ContactsScreen';
+import NewUserScreen from '../../app/Screens/NewUserScreen'
 
 class AppNavigator extends Component {
 
@@ -29,6 +30,10 @@ class AppNavigator extends Component {
             case "Login":
                 return(
                     <LoginScreen {...globalNavigatorProps} />
+                );
+            case "NewUser":
+                return(
+                    <NewUserScreen {...globalNavigatorProps} />
                 );
             case "MainMenu":
                 return(
