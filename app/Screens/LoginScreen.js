@@ -101,7 +101,7 @@ const styles = StyleSheet.create({
         width: 250,
         fontSize: 30,
         color: 'white',
-        backgroundColor: '#007ACC',
+        backgroundColor: colorTheme,
     },
 
     newUserButton: {
@@ -111,7 +111,7 @@ const styles = StyleSheet.create({
         padding: 5,
         fontSize: 15,
         color: 'white',
-        backgroundColor: '#007ACC'
+        backgroundColor: colorTheme
     },
 
     textInputWrapper: {

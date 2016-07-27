@@ -1,9 +1,12 @@
 import React, {Component} from 'react';
 import {StyleSheet, Navigator, View, Text} from 'react-native';
+
 import MainMenuScreen from '../../app/Screens/MainMenuScreen';
 import LoginScreen from '../../app/Screens/LoginScreen';
 import ContactsScreen from '../../app/Screens/ContactsScreen';
-import NewUserScreen from '../../app/Screens/NewUserScreen'
+import NewUserScreen from '../../app/Screens/NewUserScreen';
+import FinancialScreen from '../../app/Screens/FinancialScreen';
+import ContactDetailsScreen from '../../app/Screens/ContactDetailsScreen';
 
 class AppNavigator extends Component {
 
@@ -44,6 +47,15 @@ class AppNavigator extends Component {
             case "Contacts":
                 return(
                     <ContactsScreen {...globalNavigatorProps} />
+                );
+            case "Financial":
+                return(
+                    <FinancialScreen {...globalNavigatorProps} />
+                );
+            case "ContactDetails":
+                return(
+                    <ContactDetailsScreen {...globalNavigatorProps}
+                        contact={route.contact}/>
                 );
             default:
                 return(

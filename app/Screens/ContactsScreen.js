@@ -38,14 +38,29 @@ class ContactsScreen extends Component{
             contact.job,
             'They do stuff that would be explained here if I knew what they were. ',
             [{text: 'OK', onPress:() => console.log('OK')},]
-        )
+        );
+    }
+
+    _navigateToContactDetails(contact){
+        this.props.navigator.push({
+            ident: "ContactDetails",
+            contact: contact,
+        });
+    }
+
+    _sendMessage(contact){
+        Alert.alert(
+            contact.contact,
+            'Here is where messaging will go',
+            [{text: 'OK', onPress:() => console.log('OK')}]
+        );
     }
 
     _renderContactRow(contact){
         return(
             //Each row has 3 parts:
             //Icon position/name InfoIcon (Pressable for more info)
-            <TouchableOpacity style={styles.contactRow} onPress={console.log("clicked")}>
+            <TouchableOpacity style={styles.contactRow} onPress={(event) => this._navigateToContactDetails(contact)}>
                 <Icon name="user" size={30} style={styles.contactIcon} />
                 <View style={styles.info}>
                     <Text style={styles.contactJob}>
@@ -56,7 +71,16 @@ class ContactsScreen extends Component{
                     </Text>
                 </View>
                 <View style={{flex: 1}}/>
-                <Icon name="info-circle" size={25} style={styles.infoIcon}  onPress={(event) => this._showInfoAboutContact(contact)}/>
+                <Icon   name="envelope"
+                        size={25}
+                        style={styles.infoIcon}
+                        onPress={(event) => this._sendMessage(contact)}
+                />
+                <Icon   name="info-circle"
+                        size={25}
+                        style={styles.infoIcon}
+                        onPress={(event) => this._showInfoAboutContact(contact)}
+                />
             </TouchableOpacity>
         )
     }
@@ -95,11 +119,11 @@ const styles = StyleSheet.create({
     infoIcon:{
         paddingTop: 5,
         paddingRight: 20,
-        color: '#007ACC'
+        color: colorTheme
     },
 
     contactIcon:{
-        color: '#007ACC',
+        color: colorTheme,
         marginLeft: 20,
         paddingRight: 20,
         paddingTop: 5,

@@ -37,10 +37,15 @@ class MainMenuScreen extends Component {
     }
 
     _navigateToMenuItem(menuItem){
-        if (menuItem.item == "Contacts")
-        {
+        if (menuItem.item == "Contacts"){
             this.props.navigator.push({
                 ident: "Contacts",
+            });
+        }
+
+        if (menuItem.item == "Financial"){
+            this.props.navigator.push({
+                ident: "Financial",
             });
         }
     }
@@ -113,7 +118,7 @@ const styles = StyleSheet.create({
     },
 
     prependIcon: {
-        color: '#007ACC',
+        color: colorTheme,
         height: 30,
         width: 30,
         marginLeft: 20,
@@ -121,7 +126,7 @@ const styles = StyleSheet.create({
     },
 
     menuMoreIcon: {
-        color: '#007ACC',
+        color: colorTheme,
         height: 20,
         width: 20,
         marginRight: 20,
