@@ -38,34 +38,27 @@ class NewUserScreen extends Component
 
     _navigateToLogin() { this.props.navigator.pop; }
 
-    _confirmAccountCreation()
-    {
-        if (this.state.password != this.state.passwordConf)
-        {
+    //Makes sure that all fields match when creating an account
+    _confirmAccountCreation(){
+        if (this.state.password != this.state.passwordConf){
             this._throwAlert('Passwords don\'t match');
         }
-
-        else if (this.state.claimNumber != pseudoData.claimNumber)
-        {
+        else if (this.state.claimNumber != pseudoData.claimNumber){
             this._throwAlert('Couldn\'t find that claim number');
         }
-
-        else if (this.state.socialSecurityNumber != pseudoData.ssn)
-        {
+        else if (this.state.socialSecurityNumber != pseudoData.ssn){
             this._throwAlert('Social Security Number does not match');
         }
-
         else this.props.navigator.pop();
     }
 
-    _throwAlert(message)
-    {
-        Alert.alert
-        (
-            'Error creating account',
-            message,
+    //Pop up alert that tells you what field wasn't accepted/
+    //Takes a message parameter.
+    _throwAlert(message){
+        Alert.alert(
+            'Error creating account', message,
             [{text: 'OK', onPress:() => console.log('OK')},]
-        )
+        );
     }
 
     //Below I wrap the TextInputs with Views in order to have just a

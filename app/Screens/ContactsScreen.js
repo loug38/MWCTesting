@@ -43,6 +43,8 @@ class ContactsScreen extends Component{
 
     _renderContactRow(contact){
         return(
+            //Each row has 3 parts:
+            //Icon position/name InfoIcon (Pressable for more info)
             <TouchableOpacity style={styles.contactRow} onPress={console.log("clicked")}>
                 <Icon name="user" size={30} style={styles.contactIcon} />
                 <View style={styles.info}>

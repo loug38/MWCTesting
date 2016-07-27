@@ -46,7 +46,7 @@ class MainMenuScreen extends Component {
     }
 
     // Each of the actual items in the list in format:
-    // Icon "Word" >
+    // Icon "Word" Icon
     _renderMenuRow(menuItem){
         return(
             <TouchableOpacity style={styles.menuRow} onPress={(event) => this._navigateToMenuItem(menuItem)}>

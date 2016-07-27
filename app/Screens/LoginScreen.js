@@ -2,11 +2,13 @@ import React, { Component } from 'react';
 import { StyleSheet, Text, View, TextInput, TouchableOpacity, Image,
          Dimensions, Navigator} from 'react-native';
 
+//Custom Components
 import StatusBarFiller from '../Components/StatusBarFiller';
 import ViewContainer from '../Components/ViewContainer';
 import Button from '../../node_modules/react-native-button';
 import DatePicker from 'react-native-datepicker';
 
+//globals
 const window = Dimensions.get('window');
 var colorTheme = '#007ACC';
 

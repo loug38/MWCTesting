@@ -8,8 +8,10 @@ import NewUserScreen from '../../app/Screens/NewUserScreen'
 class AppNavigator extends Component {
 
     //This class controls navigation from page to page and the animation
-    //of the transition. To add more page navigations just add then to
-    //the switch statement inside of _renderScene.
+    //of the transition. To add more page navigations just add the, to
+    //the switch statement inside of _renderScene. Then when referencing
+    //the navigator set the ident field to the keyword you use in the
+    //switch.
     render(){
         return(
             <Navigator
