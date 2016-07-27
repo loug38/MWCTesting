@@ -19,6 +19,7 @@ const menu = [
     {item: "Medical", icon: "plus"},
     {item: "Calendar", icon: "calendar"},
     {item: "Claims", icon: "legal"},
+    {item: "Message Center", icon: "envelope"},
 ]
 
 //Main navigation for the app
@@ -48,20 +49,34 @@ class MainMenuScreen extends Component {
                 ident: "Financial",
             });
         }
+
+        if (menuItem.item == "Message"){
+            this.props.navigator.push({
+                ident: "Message",
+            })
+        }
+
+        if (menuItem.item == "Medical"){
+            this.props.navigator.push({
+                ident: "Medical",
+            });
+        }
     }
 
     // Each of the actual items in the list in format:
     // Icon "Word" Icon
     _renderMenuRow(menuItem){
         return(
-            <TouchableOpacity style={styles.menuRow} onPress={(event) => this._navigateToMenuItem(menuItem)}>
-                <Icon name={menuItem.icon} size={25} style={styles.prependIcon} />
-                <Text style={styles.menuItemName}>
-                    {menuItem.item}
-                </Text>
-                <View style={{flex: 1}}/>
-                <Icon name="chevron-right" style={styles.menuMoreIcon} />
-            </TouchableOpacity>
+            <View style={styles.rows}>
+                <TouchableOpacity style={styles.menuRow} onPress={(event) => this._navigateToMenuItem(menuItem)}>
+                    <Icon name={menuItem.icon} size={25} style={styles.prependIcon} />
+                    <Text style={styles.menuItemName}>
+                        {menuItem.item}
+                    </Text>
+                    <View style={{flex: 1}}/>
+                    <Icon name="chevron-right" style={styles.menuMoreIcon} />
+                </TouchableOpacity>
+            </View>
         )
     }
 
@@ -132,6 +147,11 @@ const styles = StyleSheet.create({
         marginRight: 20,
         marginTop: 10,
     },
+
+    rows: {
+        borderBottomWidth: 1,
+        borderBottomColor: '#dddddd',
+    }
 });
 
 module.exports = MainMenuScreen;

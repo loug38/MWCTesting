@@ -13,7 +13,7 @@ import DatePicker from 'react-native-datepicker';
 
 //globals
 const window = Dimensions.get('window');
-const pseudoData = { birthday: "10201990", claimNumber:"1", ssn:"123456789" };
+const pseudoData = { birthday: "10-20-1990", claimNumber:"1", ssn:"123456789" };
 
 var colorTheme = '#007ACC';
 
@@ -48,6 +48,8 @@ class NewUserScreen extends Component
         }
         else if (this.state.socialSecurityNumber != pseudoData.ssn){
             this._throwAlert('Social Security Number does not match');
+        }else if (this.state.date != pseudoData.birthday){
+            this._throwAlert('Birthdate does not match')
         }
         else this.props.navigator.pop();
     }
@@ -110,6 +112,7 @@ class NewUserScreen extends Component
                         onChangeText={(claimNumber) => this.setState({claimNumber})}
                     />
                 </View>
+
                 {/* Social Security Field */}
                 <Text style={styles.fieldDescription}>
                     Social Security Number
@@ -153,6 +156,8 @@ class NewUserScreen extends Component
                         onChangeText={(passwordConf) => this.setState({passwordConf})}
                     />
                 </View>
+
+                {/* Create Account Button */}
                 <Button onPress={() => this._confirmAccountCreation()}
                     style={styles.createAccountButton}>
                         Create Account

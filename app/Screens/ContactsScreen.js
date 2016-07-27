@@ -33,14 +33,7 @@ class ContactsScreen extends Component{
         };
     }
 
-    _showInfoAboutContact(contact){
-        Alert.alert (
-            contact.job,
-            'They do stuff that would be explained here if I knew what they were. ',
-            [{text: 'OK', onPress:() => console.log('OK')},]
-        );
-    }
-
+    //In the case of pressing a contact for more info
     _navigateToContactDetails(contact){
         this.props.navigator.push({
             ident: "ContactDetails",
@@ -48,40 +41,52 @@ class ContactsScreen extends Component{
         });
     }
 
+    //in the case the message button has been pressed
     _sendMessage(contact){
+        this.props.navigator.push({
+            ident: "Message",
+            contact: contact,
+        });
+    }
+
+    //in the case the call button has been pressed
+    _makeCall(contact){
         Alert.alert(
-            contact.contact,
-            'Here is where messaging will go',
+            contact.name,
+            'Here is where calls will go',
             [{text: 'OK', onPress:() => console.log('OK')}]
         );
     }
+
 
     _renderContactRow(contact){
         return(
             //Each row has 3 parts:
             //Icon position/name InfoIcon (Pressable for more info)
-            <TouchableOpacity style={styles.contactRow} onPress={(event) => this._navigateToContactDetails(contact)}>
-                <Icon name="user" size={30} style={styles.contactIcon} />
-                <View style={styles.info}>
-                    <Text style={styles.contactJob}>
-                        {contact.job}
-                    </Text>
-                    <Text style={styles.contactName}>
-                        {contact.name}
-                    </Text>
-                </View>
-                <View style={{flex: 1}}/>
-                <Icon   name="envelope"
-                        size={25}
-                        style={styles.infoIcon}
-                        onPress={(event) => this._sendMessage(contact)}
-                />
-                <Icon   name="info-circle"
-                        size={25}
-                        style={styles.infoIcon}
-                        onPress={(event) => this._showInfoAboutContact(contact)}
-                />
-            </TouchableOpacity>
+            <View style={styles.rows}>
+                <TouchableOpacity style={styles.contactRow} onPress={(event) => this._navigateToContactDetails(contact)}>
+                    <Icon name="user" size={25} style={styles.contactIcon} />
+                    <View style={styles.info}>
+                        <Text style={styles.contactJob}>
+                            {contact.job}
+                        </Text>
+                        <Text style={styles.contactName}>
+                            {contact.name}
+                        </Text>
+                    </View>
+                    <View style={{flex: 1}}/>
+                    <Icon   name="envelope"
+                            size={25}
+                            style={styles.infoIcon}
+                            onPress={(event) => this._sendMessage(contact)}
+                    />
+                    <Icon   name="phone"
+                            size={25}
+                            style={styles.infoIcon}
+                            onPress={(event) => this._makeCall(contact)}
+                    />
+                </TouchableOpacity>
+            </View>
         )
     }
 
@@ -125,7 +130,7 @@ const styles = StyleSheet.create({
     contactIcon:{
         color: colorTheme,
         marginLeft: 20,
-        paddingRight: 20,
+        paddingRight: 10,
         paddingTop: 5,
     },
 
@@ -134,8 +139,14 @@ const styles = StyleSheet.create({
     },
 
     contactName:{
-        fontSize: 15,
+        fontSize: 14,
         color: '#999999'
+    },
+
+    rows: {
+        borderBottomWidth: 1,
+        borderBottomColor: '#dddddd',
+        paddingBottom: 15,
     },
 });
 

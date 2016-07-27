@@ -5,28 +5,20 @@ import ViewContainer from '../../app/Components/ViewContainer';
 import StatusBarFiller from '../../app/Components/StatusBarFiller';
 import NavigationBar from '../../app/Components/NavigationBar';
 
+import Icon from 'react-native-vector-icons/FontAwesome';
+
 const colorTheme = '#007ACC';
 
 class ContactDetailsScreen extends Component{
     constructor(props){
         super(props);
-        var ds = new ListView.DataSource({rowHasChanged: (r1,r2) => r1 != r2});
-        this.state ={
-            detailsDataSource: ds.cloneWithRows(this.props.contact.contact),
-        };
     }
 
-    _renderDetailRow(contact){
-        return(
-            <TouchableOpacity style={styles.contactRow} onPress={console.log('OK')}>
-                <View style={styles.contactInfo}>
-                    <Text style={styles.contactJob}>
-                        {contact.contact}
-                    </Text>
-                </View>
-                <View style={{flex: 1}}/>
-            </TouchableOpacity>
-        )
+    _navigateToMessage(contact){
+        this.props.navigator.push({
+                ident: "Message",
+                contact: contact,
+        });
     }
 
     render(){
@@ -35,9 +27,11 @@ class ContactDetailsScreen extends Component{
                 <StatusBarFiller backgroundColor={colorTheme} />
                 <NavigationBar   backgroundColor={colorTheme}
                                  leftWord="Back"
-                                 title="ContactDetails"
-                                 rightWord=""
-                                 nav={this.props.navigator}/>
+                                 title="Contact Details"
+                                 rightWord="Message"
+                                 nav={this.props.navigator}
+                                 navTo="Message"
+                                 />
                 <View style={styles.details}>
                     <View style={styles.underline}>
                         <Text style={styles.name}>
@@ -48,13 +42,18 @@ class ContactDetailsScreen extends Component{
                         </Text>
                     </View>
                     <Text style={styles.description}>
-                        {`Description of the job that the person performs`}
+                        {`Description of the job that the person performs also testing to see if this will wrap`}
                     </Text>
+                    <View style={styles.contactView}>
+                        <TouchableOpacity onPress={(event) => this._navigateToMessage(this.props.contact)}>
+                            <Icon name="envelope" size={30} color={colorTheme} paddingTop={5}>
+                            </Icon>
+                        </TouchableOpacity>
+                        <Text onPress={(event) => this._navigateToMessage(this.props.contact)} style={styles.contactInfo}>
+                            {this.props.contact.contact}
+                        </Text>
+                    </View>
                 </View>
-                <ListView
-                    dataSource={this.state.detailsDataSource}
-                    renderRow={() => {return this._renderDetailRow(this.props.contact)}}
-                />
             </ViewContainer>
         );
     }
@@ -63,7 +62,13 @@ class ContactDetailsScreen extends Component{
 const styles = StyleSheet.create({
     name: {
         fontSize: 30,
-        color: colorTheme,
+        color: '#333333',
+    },
+
+    job: {
+        marginTop: 15,
+        marginLeft: 10,
+        color: '#888888',
     },
 
     description: {
@@ -78,16 +83,11 @@ const styles = StyleSheet.create({
     },
 
     underline:{
+        marginLeft: 0,
+        marginRight: 0,
         flexDirection: 'row',
         borderBottomWidth: 3,
-        borderBottomColor: '#aaaaaa',
-    },
-
-    job:{
-        marginLeft: 60,
-        marginTop: 15,
-        paddingLeft: 20,
-        color: '#555555'
+        borderBottomColor: colorTheme,
     },
 
     contactInfo:{
@@ -95,6 +95,11 @@ const styles = StyleSheet.create({
         marginTop: 10,
         marginRight: 20,
     },
+
+    contactView:{
+        margin: 20,
+        flexDirection: 'row'
+    }
 });
 
 module.exports = ContactDetailsScreen;

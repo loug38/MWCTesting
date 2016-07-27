@@ -13,32 +13,34 @@ import ViewContainer from './ViewContainer';
 //nav: the navigator reference from where its coming from so you
 //can back out to previous screen (pop screen off the stack.)
 
+var colorTheme = '#007ACC';
+
 class NavigationBar extends Component{
+    colorTheme = this.props.backgroundColor;
+
     render(){
         return(
             <View>
                 <StatusBarFiller backgroundColor="#007AFF" />
-                <View style={{backgroundColor: this.props.backgroundColor,
-                            height: 60,
-                            flexDirection: 'row',
-                            paddingTop: 25}}
-                >
+                <View style={styles.container}>
                     <TouchableOpacity onPress={() => this.props.nav.pop()}>
-                        <Icon name='chevron-left' style={styles.backIcon}>
-                            <Text style={styles.navBarButtonText}>
-                                {`   ${this.props.leftWord}`}
-                            </Text>
-                        </Icon>
+                        <Icon name='angle-left' size={20} style={styles.backIcon} />
+                    </TouchableOpacity>
+                    <TouchableOpacity onPress={() => this.props.nav.pop()}>
+                        <Text style={styles.navBarButtonLeftText}>
+                            {this.props.leftWord}
+                        </Text>
                     </TouchableOpacity>
                     <Text style={styles.navBarTitle}>
                         {this.props.title}
                     </Text>
-                    <Text style={styles.navBarButtonText}>
-                        {this.props.rightWord}
-                    </Text>
-                {/* This is a transparent icon to help center the title
-                    can ignore it for now. */}
-
+                    <TouchableOpacity onPress={() => this.props.nav.push({
+                                                ident: this.props.navTo,
+                                                })}>
+                        <Text style={styles.navBarButtonRightText}>
+                            {this.props.rightWord}
+                        </Text>
+                    </TouchableOpacity>
                 </View>
             </View>
         );
@@ -46,33 +48,48 @@ class NavigationBar extends Component{
 }
 
 const styles = StyleSheet.create({
+    container:{
+        backgroundColor: colorTheme,
+        height: 60,
+        flex: 1,
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'flex-start',
+        paddingTop: 25,
+    },
+
     backIcon:{
         color: '#ffffff',
-        height: 32,
+        width: 20,
         paddingLeft: 10,
-        paddingTop: 3,
+        paddingRight: 3,
     },
 
     forwardIcon:{
-        color: 'transparent',
-        height: 32,
+        color: '#ffffff',
+        width: 20,
         paddingRight: 10,
-        paddingTop: 3,
+        paddingTop: 5,
     },
 
-    navBarButtonText:{
+    navBarButtonRightText:{
         color: '#ffffff',
         fontSize: 16,
-        alignItems: 'flex-start',
-        textAlign: 'center',
-        width: 60
+        width: 90,
+        paddingLeft: 10,
+    },
+
+    navBarButtonLeftText:{
+        color: '#ffffff',
+        fontSize: 16,
+        width: 90,
+        paddingRight: 10,
     },
 
     navBarTitle:{
         color: '#ffffff',
         flex: 1,
         textAlign: 'center',
-        paddingRight: 10,
         fontSize: 20,
     },
 });
