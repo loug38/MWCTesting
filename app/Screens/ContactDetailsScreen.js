@@ -87,7 +87,7 @@ const styles = StyleSheet.create({
         marginRight: 0,
         flexDirection: 'row',
         borderBottomWidth: 3,
-        borderBottomColor: colorTheme,
+        borderBottomColor: '#777777',
     },
 
     contactInfo:{

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { StyleSheet, Text, View, TextInput, TouchableOpacity, Image,
-         Dimensions, Alert} from 'react-native';
+         Dimensions, Alert, ScrollView} from 'react-native';
 
 //Custom components
 import ViewContainer from '../Components/ViewContainer';
@@ -70,6 +70,7 @@ class NewUserScreen extends Component
     render()
     {
         return (
+            <ScrollView>
             <ViewContainer>
                 {/* Status bar and navigation bar*/}
                 <StatusBarFiller backgroundColor={colorTheme} />
@@ -163,6 +164,7 @@ class NewUserScreen extends Component
                         Create Account
                 </Button>
             </ViewContainer>
+            </ScrollView>
         );
     }
 }
@@ -206,6 +208,7 @@ const styles = StyleSheet.create({
         marginTop: 60,
         marginLeft: 50,
         marginRight: 50,
+        marginBottom: 50,
         padding: 5,
         fontSize: 15,
         color: 'white',

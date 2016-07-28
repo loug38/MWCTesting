@@ -3,6 +3,7 @@ import {StyleSheet, View, StatusBar} from 'react-native';
 
 //Allows to put oa color under the status bar and recolors the
 //text on the status bar (carrier, wifi, clock, battery)
+
 class StatusBarFiller extends Component{
     render(){
         return(

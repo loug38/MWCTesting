@@ -62,14 +62,12 @@ const styles = StyleSheet.create({
         color: '#ffffff',
         width: 20,
         paddingLeft: 10,
-        paddingRight: 3,
     },
 
     forwardIcon:{
         color: '#ffffff',
         width: 20,
         paddingRight: 10,
-        paddingTop: 5,
     },
 
     navBarButtonRightText:{
