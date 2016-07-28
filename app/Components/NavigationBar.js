@@ -16,31 +16,35 @@ import ViewContainer from './ViewContainer';
 var colorTheme = '#007ACC';
 
 class NavigationBar extends Component{
-    colorTheme = this.props.backgroundColor;
-
     render(){
         return(
-            <View>
+            <View backgroundColor={this.props.backgroundColor}>
                 <StatusBarFiller backgroundColor="#007AFF" />
-                <View style={styles.container}>
-                    <TouchableOpacity onPress={() => this.props.nav.pop()}>
-                        <Icon name='angle-left' size={20} style={styles.backIcon} />
-                    </TouchableOpacity>
-                    <TouchableOpacity onPress={() => this.props.nav.pop()}>
-                        <Text style={styles.navBarButtonLeftText}>
-                            {this.props.leftWord}
+                <View style={styles.navBar}>
+                    <View style={styles.navBarTitleContainer}>
+                        <Text style={styles.navBarTitle}>
+                            {this.props.title}
                         </Text>
-                    </TouchableOpacity>
-                    <Text style={styles.navBarTitle}>
-                        {this.props.title}
-                    </Text>
-                    <TouchableOpacity onPress={() => this.props.nav.push({
-                                                ident: this.props.navTo,
-                                                })}>
-                        <Text style={styles.navBarButtonRightText}>
-                            {this.props.rightWord}
-                        </Text>
-                    </TouchableOpacity>
+                    </View>
+                    <View style={styles.buttonContainer}>
+                        <TouchableOpacity onPress={() => this.props.nav.pop()}>
+                            <Icon name='angle-left' size={20} style={styles.backIcon} />
+                        </TouchableOpacity>
+                        <TouchableOpacity onPress={() => this.props.nav.pop()}>
+                            <Text style={styles.backText}>
+                                {this.props.leftWord}
+                            </Text>
+                        </TouchableOpacity>
+                    </View>
+                    <View style={styles.buttonContainer}>
+                        <TouchableOpacity onPress={() => this.props.nav.push({
+                                                    ident: this.props.navTo,
+                                                    })}>
+                            <Text style={styles.forwardText}>
+                                {this.props.rightWord}
+                            </Text>
+                        </TouchableOpacity>
+                    </View>
                 </View>
             </View>
         );
@@ -48,47 +52,57 @@ class NavigationBar extends Component{
 }
 
 const styles = StyleSheet.create({
-    container:{
-        backgroundColor: colorTheme,
-        height: 60,
+
+    navBar: {
+        marginTop: 20,
+        height: 40,
         flex: 1,
         flexDirection: 'row',
-        alignItems: 'center',
-        justifyContent: 'flex-start',
-        paddingTop: 25,
+        justifyContent: 'space-between',
+        alignItems: 'stretch',
+    },
+
+    buttonContainer: {
+        flexDirection: 'row',
+        alignItems: 'flex-start',
+        paddingTop: 10,
     },
 
     backIcon:{
         color: '#ffffff',
-        width: 20,
+        alignSelf: 'flex-start',
+        width: 30,
         paddingLeft: 10,
     },
 
-    forwardIcon:{
-        color: '#ffffff',
-        width: 20,
-        paddingRight: 10,
-    },
-
-    navBarButtonRightText:{
+    backText:{
         color: '#ffffff',
         fontSize: 16,
-        width: 90,
+        paddingRight: 10,
+        alignSelf: 'flex-start'
+    },
+
+    forwardText:{
+        color: '#ffffff',
+        fontSize: 16,
         paddingLeft: 10,
-    },
-
-    navBarButtonLeftText:{
-        color: '#ffffff',
-        fontSize: 16,
-        width: 90,
-        paddingRight: 10,
+        alignSelf: 'flex-end',
     },
 
     navBarTitle:{
         color: '#ffffff',
-        flex: 1,
-        textAlign: 'center',
         fontSize: 20,
+        alignItems: 'center',
+    },
+
+    navBarTitleContainer: {
+        position: 'absolute',
+        top: 0,
+        left: 0,
+        right: 0,
+        marginTop: 10,
+        justifyContent: 'center',
+        alignItems: 'center',
     },
 });
 

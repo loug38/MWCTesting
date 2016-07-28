@@ -28,9 +28,9 @@ class ContactDetailsScreen extends Component{
                 <NavigationBar   backgroundColor={colorTheme}
                                  leftWord="Back"
                                  title="Contact Details"
-                                 rightWord="Message"
+                                 rightWord=''
                                  nav={this.props.navigator}
-                                 navTo="Message"
+                                 navTo=""
                                  />
                 <View style={styles.details}>
                     <View style={styles.underline}>

@@ -9,6 +9,7 @@ import FinancialScreen from '../../app/Screens/FinancialScreen';
 import ContactDetailsScreen from '../../app/Screens/ContactDetailsScreen';
 import MessageScreen from '../../app/Screens/MessageScreen';
 import MedicalScreen from '../../app/Screens/MedicalScreen';
+import MessageListScreen from '../../app/Screens/MessageListScreen';
 
 class AppNavigator extends Component {
 
@@ -68,6 +69,11 @@ class AppNavigator extends Component {
                 return(
                     <MedicalScreen {...globalNavigatorProps} />
                 );
+            case "Message Center":
+                return(
+                    <MessageListScreen {...globalNavigatorProps}
+                        contact={route.contact}/>
+                )
             default:
                 return(
                     <LoginScreen {...globalNavigatorProps} />

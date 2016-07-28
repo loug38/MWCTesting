@@ -61,6 +61,12 @@ class MainMenuScreen extends Component {
                 ident: "Medical",
             });
         }
+
+        if (menuItem.item == "Message Center"){
+            this.props.navigator.push({
+                ident: "Message Center",
+            });
+        }
     }
 
     // Each of the actual items in the list in format:

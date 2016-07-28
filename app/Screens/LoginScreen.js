@@ -8,6 +8,8 @@ import ViewContainer from '../Components/ViewContainer';
 import Button from '../../node_modules/react-native-button';
 import DatePicker from 'react-native-datepicker';
 
+import Icon from 'react-native-vector-icons/FontAwesome';
+
 //globals
 const window = Dimensions.get('window');
 var colorTheme = '#007ACC';
@@ -77,8 +79,8 @@ const styles = StyleSheet.create({
     },
 
     logo:{
-        width: 250,
-        height: 250,
+        width: 150,
+        height: 150,
         resizeMode: 'contain',
         marginTop: 100,
     },
@@ -119,7 +121,7 @@ const styles = StyleSheet.create({
         width: (window.width - 50),
         borderBottomWidth: 1,
         borderBottomColor: '#aaaaaa'
-    }
+    },
 });
 
 module.exports = LoginScreen;

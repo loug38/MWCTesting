@@ -5,7 +5,7 @@ import ViewContainer from '../../app/Components/ViewContainer';
 import StatusBarFiller from '../../app/Components/StatusBarFiller';
 import NavigationBar from '../../app/Components/NavigationBar';
 
-const colorTheme = '#007ACC';
+const colorTheme = '#009900';
 
 class FinancialScreen extends Component{
     render(){
