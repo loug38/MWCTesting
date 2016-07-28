@@ -14,6 +14,7 @@ import ViewContainer from './ViewContainer';
 //can back out to previous screen (pop screen off the stack.)
 
 var colorTheme = '#007ACC';
+var showRight = true;
 
 class NavigationBar extends Component{
     render(){
@@ -37,9 +38,7 @@ class NavigationBar extends Component{
                         </TouchableOpacity>
                     </View>
                     <View style={styles.buttonContainer}>
-                        <TouchableOpacity onPress={() => this.props.nav.push({
-                                                    ident: this.props.navTo,
-                                                    })}>
+                        <TouchableOpacity onPress={() => this.props.nav.push({ident: this.props.navTo,})}>
                             <Text style={styles.forwardText}>
                                 {this.props.rightWord}
                             </Text>
@@ -73,6 +72,13 @@ const styles = StyleSheet.create({
         alignSelf: 'flex-start',
         width: 30,
         paddingLeft: 10,
+    },
+
+    forwardIcon:{
+        color: '#ffffff',
+        alignSelf: 'flex-start',
+        width: 30,
+        paddingRight: 10,
     },
 
     backText:{

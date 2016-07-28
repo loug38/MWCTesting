@@ -111,7 +111,7 @@ class ContactsScreen extends Component{
 
 const styles = StyleSheet.create({
     contactRow: {
-        marginTop: 20,
+        marginTop: 15,
         flexDirection: 'row',
         height: 40,
     },

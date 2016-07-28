@@ -75,9 +75,6 @@ class MessageListScreen extends Component{
                         dataSource={this.state.contactsDataSource}
                         renderRow={(contact) => {return this._renderMessageHistory(contact)}}
                     />
-                    <Text style={{fontSize: 9, alignSelf:'center'}}>Message Compression by</Text>
-                    <Icon name='pied-piper' size={25} style={styles.ppLogo} />
-                    <Text style={styles.ppText}> Pied Piper </Text>
                 </View>
             </ViewContainer>
         );

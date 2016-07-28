@@ -65,6 +65,12 @@ class LoginScreen extends Component{
                     <Image style={styles.dcLogo}
                         source={require('../../img/datacareLogo.png')}
                     />
+                    <Icon name="pied-piper" size={55} color='green' marginTop={10}>
+                        <Text style={{color: 'green', fontSize: 15}}>
+                            Pied Piper
+                        </Text>
+                    </Icon>
+
             </View>
         );
     }
@@ -82,10 +88,11 @@ const styles = StyleSheet.create({
         width: 150,
         height: 150,
         resizeMode: 'contain',
-        marginTop: 100,
+        marginBottom: 50,
     },
 
     dcLogo:{
+        marginTop: 20,
         width: 200,
         resizeMode: 'contain',
     },
@@ -98,7 +105,7 @@ const styles = StyleSheet.create({
     loginButton: {
         borderRadius: 8,
         overflow: 'hidden',
-        marginTop: 40,
+        marginTop: 50,
         padding: 5,
         width: 250,
         fontSize: 30,
