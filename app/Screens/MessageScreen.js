@@ -38,7 +38,6 @@ class MessageScreen extends Component{
                     <View style={styles.textContainer}>
                         <TextInput
                             style={styles.input}
-                            value={this.state.message}
                             onChangeText={(text) => this.setState({message:text})}
                         />
                     </View>
@@ -46,7 +45,7 @@ class MessageScreen extends Component{
                         <TouchableHighlight
                             underlayColor={colorTheme}
                             onPress={() => this.onSendPress()}>
-                            <Text style={{color: '#ffffff'}}> SEND </Text>
+                            <Text style={{color: '#FFFFFF'}}> SEND </Text>
                         </TouchableHighlight>
                     </View>
                 </View>
@@ -73,6 +72,7 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'space-around',
         alignItems: 'center',
+        borderTopWidth: 1,
         backgroundColor: colorTheme,
     },
 

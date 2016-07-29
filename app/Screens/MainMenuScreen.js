@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {StyleSheet, AppRegistry, Text, View,TouchableOpacity, ListView,
-        Navigator,} from 'react-native';
+        Navigator, Dimensions} from 'react-native';
 
 //Custom Components
 import ViewContainer from '../../app/Components/ViewContainer';
@@ -11,16 +11,8 @@ import NavigationBar from '../../app/Components/NavigationBar';
 import Icon from 'react-native-vector-icons/FontAwesome';
 const colorTheme = '#007ACC';
 
-
 //globals
-const menu = [
-    {item: "Contacts", icon: "group"},
-    {item: "Financial", icon: "money"},
-    {item: "Medical", icon: "plus"},
-    {item: "Calendar", icon: "calendar"},
-    {item: "Claims", icon: "legal"},
-    {item: "Message Center", icon: "envelope"},
-]
+const window = Dimensions.get('window');
 
 //Main navigation for the app
 class MainMenuScreen extends Component {
@@ -31,132 +23,156 @@ class MainMenuScreen extends Component {
     //too much. Still easier than doing it natively.
     constructor(props){
         super(props);
-        var ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 != r2});
-        this.state ={
-            menuDataSource: ds.cloneWithRows(menu),
-        };
     }
 
     _navigateToMenuItem(menuItem){
-        if (menuItem.item == "Contacts"){
+        if (menuItem == "Contacts"){
             this.props.navigator.push({
                 ident: "Contacts",
             });
         }
 
-        if (menuItem.item == "Financial"){
+        if (menuItem == "Financial"){
             this.props.navigator.push({
                 ident: "Financial",
             });
         }
 
-        if (menuItem.item == "Message"){
+        if (menuItem == "Message"){
             this.props.navigator.push({
                 ident: "Message",
             })
         }
 
-        if (menuItem.item == "Medical"){
+        if (menuItem == "Medical"){
             this.props.navigator.push({
                 ident: "Medical",
             });
         }
 
-        if (menuItem.item == "Message Center"){
+        if (menuItem == "Message Center"){
             this.props.navigator.push({
                 ident: "Message Center",
             });
         }
     }
 
-    // Each of the actual items in the list in format:
-    // Icon "Word" Icon
-    _renderMenuRow(menuItem){
-        return(
-            <View style={styles.rows}>
-                <TouchableOpacity style={styles.menuRow} onPress={(event) => this._navigateToMenuItem(menuItem)}>
-                    <Icon name={menuItem.icon} size={25} style={styles.prependIcon} />
-                    <Text style={styles.menuItemName}>
-                        {menuItem.item}
-                    </Text>
-                    <View style={{flex: 1}}/>
-                    <Icon name="chevron-right" style={styles.menuMoreIcon} />
-                </TouchableOpacity>
-            </View>
-        )
-    }
-
     render(){
         return(
             <ViewContainer>
-                {/* Status bar and navigation bar*/}
                 <StatusBarFiller backgroundColor={colorTheme} />
-                <NavigationBar  backgroundColor={colorTheme}
+                <NavigationBar   backgroundColor={colorTheme}
                                 leftWord="Logout"
-                                title="Main Menu"
+                                title="MainMenu"
                                 rightWord=""
-                                nav={this.props.navigator}
-                />
-                {/* BODY */}
-                <ListView
-                    dataSource={this.state.menuDataSource}
-                    renderRow={(menuItem) => {return this._renderMenuRow(menuItem)}}
-                />
+                                nav={this.props.navigator}/>
+                <View style={styles.container}>
+
+                    {/* Top Row */}
+                    <View style={styles.rows}>
+                        {/* Top Left */}
+                        <TouchableOpacity onPress={(event) => this._navigateToMenuItem("Contacts")}>
+                            <View style={styles.imgContainer}>
+                                <Text style={styles.title}> Contacts </Text>
+                                <Icon name='group' size={100} color={colorTheme} style={styles.images}/>
+                            </View>
+                        </TouchableOpacity>
+
+                        {/* Top Right */}
+                        <TouchableOpacity onPress={(event) => this._navigateToMenuItem("Financial")}>
+                            <View style={styles.imgContainer}>
+                                <Text style={styles.title}> Financial</Text>
+                                <Icon name='money' size={100} color={colorTheme} style={styles.images}/>
+                            </View>
+                        </TouchableOpacity>
+                    </View>
+
+                    {/* Middle Row */}
+                    <View style={styles.rows}>
+                        {/* Middle Left */}
+                        <TouchableOpacity onPress={(event) => this._navigateToMenuItem("Medical")}>
+                            <View style={styles.imgContainer}>
+                                <Text style={styles.title}> Medical </Text>
+                                <Icon name='plus' size={100} color={colorTheme} style={styles.moddedImages}/>
+                            </View>
+                        </TouchableOpacity>
+
+                        {/* Middle Right */}
+                        <TouchableOpacity onPress={(event) => this._navigateToMenuItem("Calendar")}>
+                            <View style={styles.imgContainer}>
+                                <Text style={styles.title}> Calendar </Text>
+                                <Icon name='calendar' size={100} color={colorTheme} style={styles.moddedImages}/>
+                            </View>
+                        </TouchableOpacity>
+                    </View>
+
+                    {/* Bottom Row */}
+                    <View style={styles.rows}>
+                        {/* Bottom Left */}
+                        <TouchableOpacity onPress={(event) => this._navigateToMenuItem("Claims")}>
+                            <View style={styles.imgContainer}>
+                                <Text style={styles.title}> Claims </Text>
+                                <Icon name='legal' size={100} color={colorTheme} style={styles.images}/>
+                            </View>
+                        </TouchableOpacity>
+
+                        {/* Bottom Right */}
+                        <TouchableOpacity onPress={(event) => this._navigateToMenuItem("Message Center")}>
+                            <View style={styles.imgContainer}>
+                                <Text style={styles.title}> Messages </Text>
+                                <Icon name='envelope' size={100} color={colorTheme} style={styles.images}/>
+                            </View>
+                        </TouchableOpacity>
+                    </View>
+                </View>
             </ViewContainer>
         );
     }
 }
 
 const styles = StyleSheet.create({
-    textSample:{
-        fontSize: 20,
-        color: '#345678',
-    },
-
-    backIcon:{
-        color: '#112233',
-        height: 10,
-        width: 10,
-        paddingLeft: 5,
-        paddingTop: 5,
-    },
-
-    navBarText:{
-        color: '#ff0000',
-    },
-
-    menuRow:{
-        flexDirection: 'row',
-        justifyContent: 'center',
-        alignItems: 'center',
-        height: 60,
-    },
-
-    menuItemName:{
-        marginLeft: 5,
-        fontSize: 20,
-        padding: 20,
-    },
-
-    prependIcon: {
-        color: colorTheme,
-        height: 30,
-        width: 30,
-        marginLeft: 20,
-        marginTop: 5,
-    },
-
-    menuMoreIcon: {
-        color: colorTheme,
-        height: 20,
-        width: 20,
-        marginRight: 20,
-        marginTop: 10,
+    container: {
+        flex: 1,
+        padding: 5,
+        flexDirection: 'column',
     },
 
     rows: {
-        borderBottomWidth: 1,
-        borderBottomColor: '#dddddd',
+        flex: 1,
+        flexDirection: 'row',
+        marginTop: 10,
+        marginLeft: 10,
+        marginRight: 10,
+        marginBottom: 10,
+    },
+
+    imgContainer: {
+        flex: 1,
+        marginLeft: 10,
+        marginRight: 10,
+        marginBottom: 10,
+        marginTop: 10,
+        width: (window.width / 2) - 30,
+    },
+
+    images: {
+        paddingTop: 15,
+        paddingLeft: 25,
+        paddingRight: 25,
+        paddingBottom: 25,
+    },
+
+    moddedImages: {
+        paddingLeft: 35,
+        paddingTop: 15,
+        paddingRight: 25,
+        paddingBottom: 25,
+    },
+
+    title: {
+        alignSelf: 'center',
+        color: '#888888',
+        fontSize: 15,
     }
 });
 
