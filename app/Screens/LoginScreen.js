@@ -36,9 +36,10 @@ class LoginScreen extends Component{
         return(
             <View style={styles.container}>
                 <StatusBarFiller backgroundColor={colorTheme}/>
-                    <Image style={styles.logo}
-                        source={require('../../img/loginlogo1.png')}
-                    />
+                <Image style={styles.logo}
+                    source={require('../../img/loginlogo1.png')}
+                />
+                <View>
                     <View style={styles.textInputWrapper}>
                         <TextInput style={styles.textFields}
                             onChangeText={(text) => this.setState({text})}
@@ -52,25 +53,20 @@ class LoginScreen extends Component{
                             placeholder="Password"
                         />
                     </View>
+                </View>
 
-                    <Button onPress={() => this._navigateToMainMenu()}
-                        backgroundColor={colorTheme}
-                        style={styles.loginButton}>
-                        Login
-                    </Button>
-                    <Button onPress={() => this._navigateToNewUser()}
-                        style={styles.newUserButton}>
-                        New Account
-                    </Button>
-                    <Image style={styles.dcLogo}
-                        source={require('../../img/datacareLogo.png')}
-                    />
-                    <Icon name="pied-piper" size={55} color='green' marginTop={10}>
-                        <Text style={{color: 'green', fontSize: 15}}>
-                            Pied Piper
-                        </Text>
-                    </Icon>
-
+                <Button onPress={() => this._navigateToMainMenu()}
+                    backgroundColor={colorTheme}
+                    style={styles.loginButton}>
+                    Login
+                </Button>
+                <Button onPress={() => this._navigateToNewUser()}
+                    style={styles.newUserButton}>
+                    New Account
+                </Button>
+                <Image style={styles.dcLogo}
+                    source={require('../../img/datacareLogo.png')}
+                />
             </View>
         );
     }
@@ -80,7 +76,7 @@ const styles = StyleSheet.create({
     container:{
         flex: 1,
         flexDirection: 'column',
-        justifyContent: 'center',
+        justifyContent: 'space-between',
         alignItems: 'center',
     },
 
@@ -89,11 +85,13 @@ const styles = StyleSheet.create({
         height: 150,
         resizeMode: 'contain',
         marginBottom: 50,
+        marginTop: 50,
     },
 
     dcLogo:{
         marginTop: 20,
         width: 200,
+        alignSelf: 'center',
         resizeMode: 'contain',
     },
 

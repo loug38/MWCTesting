@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
-import {StyleSheet, AppRegistry, Text, View,TouchableOpacity, ListView,
-        Navigator, Dimensions} from 'react-native';
+import {StyleSheet, AppRegistry, Text, View,TouchableOpacity,
+        Navigator, Dimensions, InteractionManager} from 'react-native';
 
 //Custom Components
 import ViewContainer from '../../app/Components/ViewContainer';
@@ -9,6 +9,8 @@ import NavigationBar from '../../app/Components/NavigationBar';
 
 //packages
 import Icon from 'react-native-vector-icons/FontAwesome';
+import SpinKit from 'react-native-spinkit';
+
 const colorTheme = '#007ACC';
 
 //globals
@@ -173,7 +175,7 @@ const styles = StyleSheet.create({
         alignSelf: 'center',
         color: '#888888',
         fontSize: 15,
-    }
+    },
 });
 
 module.exports = MainMenuScreen;
