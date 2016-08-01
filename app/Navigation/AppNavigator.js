@@ -26,7 +26,7 @@ class AppNavigator extends Component {
                 style={styles.navigatorStyles}
                 renderScene={this._renderScene}
                 configureScene={(route) => ({
-                    ...route.sceneConfig || Navigator.SceneConfigs.FloatFromRight
+                    ...route.sceneConfig || Navigator.SceneConfigs.FloatFromBottom
                 })}
             />
         );
