@@ -87,7 +87,7 @@ class AppNavigator extends Component {
             case "News Feed":
                 return(
                     <MainMenuScreen {...globalNavigatorProps} />
-                )
+                );
             default:
                 return(
                     <LoginScreen {...globalNavigatorProps} />

@@ -29,7 +29,7 @@ class LoginScreen extends Component{
     _navigateToNewUser(){
         this.props.navigator.push({
             ident: "NewUser",
-            sceneConfig: Navigator.SceneConfigs.VerticalSwipeJump,
+            sceneConfig: Navigator.SceneConfigs.PushFromRight,
         });
     }
 

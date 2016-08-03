@@ -19,7 +19,7 @@ const colorTheme = '#cc0000';
 
 class MedicalScreen extends Component{
     _renderDrawer(){
-        return (<NavigationDrawer navigator={this.props.navigator} callingScreen={"News Feed"}/>);
+        return (<NavigationDrawer navigator={this.props.navigator} callingScreen={"Medical"}/>);
     }
 
     render(){
@@ -32,7 +32,7 @@ class MedicalScreen extends Component{
                     drawerPosition={DrawerLayout.positions.left}
                     ref={(drawer) => {return this.drawer = drawer}}
                     renderNavigationView={() => navigationView}>
-                    <NavigationBarDrawer backgroundColor={colorTheme} title="Feed" action={() => this.drawer.openDrawer()} />
+                    <NavigationBarDrawer backgroundColor={colorTheme} title="Medical" action={() => this.drawer.openDrawer()} />
                     <Text>
                         Medical Screen
                     </Text>

@@ -33,7 +33,6 @@ const menu = [
     {item: "Calendar", icon: "calendar"},
     {item: "Claims", icon: "legal"},
     {item: "Message Center", icon: "envelope"},
-    {item: "Settings", icon: "gear"},
 ];
 
 //Main navigation for the app
@@ -94,6 +93,8 @@ class NavigationDrawer extends Component {
             case 'News Feed':
                 this.props.navigator.push({ident: "News Feed"});
                 break;
+            case 'Logout':
+                this.props.navigator.popToTop();
         };
     }
 
@@ -113,15 +114,20 @@ class NavigationDrawer extends Component {
                                     <Icon name='user' size={50} color={'#ffffff'} style={{marginLeft:15, marginTop:5}}/>
                                 </View>
                            </View>
-                           <View style={{alignItems: 'flex-start', marginTop: 20, marginLeft: 10}}>
-                                <Text style={{fontSize: 20, color: '#ffffff', backgroundColor: 'transparent'}}> username@gmail.com </Text>
+                           <View style={styles.identity}>
+                                <Text style={{fontSize: 12, fontWeight: 'bold', color: '#ffffff', backgroundColor: 'transparent'}}>
+                                    First Last
+                                </Text>
+                                <Text style={{fontSize: 12, color: '#ffffff', backgroundColor: 'transparent'}}>
+                                    username@gmail.com
+                                </Text>
                            </View>
                     </Image>
                 </View>
-
+            
                 {/* The actual navigation menu */}
                 <View style={{borderBottomWidth: 1, borderBottomColor: '#666666', padding: 5}}>
-                    <Text style={{marginLeft: 3, fontSize: 20, color: '#666666'}}>
+                    <Text style={{marginLeft: 3, fontSize: 17, color: '#666666'}}>
                         Navigation
                     </Text>
                 </View>
@@ -132,12 +138,29 @@ class NavigationDrawer extends Component {
                     initialListSize={10}
                 />
 
-                {/* Everything below the navigation menu */}
-                <TouchableOpacity onPress={() => this.props.navigator.pop()}>
-                    <Text style={{fontSize: 15, margin: 20}}>
-                        Logout
-                    </Text>
-                </TouchableOpacity>
+                {/* Menu on the bottom of the dash that hovers above the ListView */}
+                <View style={styles.bottomHoverMenu}>
+                    <TouchableOpacity onPress={() => console.log("Settings")}>
+                        <View style={styles.splitIconAndInfo}>
+                            <View style={styles.iconContainer}>
+                                <Icon name='gear' size={30} color={'#555555'} />
+                            </View>
+                            <View style={{marginTop: 10}}>
+                                <Text style={{paddingTop: 5, fontSize: 15}}> Settings </Text>
+                            </View>
+                        </View>
+                    </TouchableOpacity>
+                    <TouchableOpacity onPress={(event) => this._navigateToMenuItem("Logout")}>
+                        <View style={styles.splitIconAndInfo}>
+                            <View style={styles.iconContainer}>
+                                <Icon name='arrow-circle-left' size={30} color={'#555555'} />
+                            </View>
+                            <View style={{marginTop: 10}}>
+                                <Text style={{paddingTop: 5, fontSize: 15}}> Logout </Text>
+                            </View>
+                        </View>
+                    </TouchableOpacity>
+                </View>
             </View>
         );
     }
@@ -193,11 +216,31 @@ const styles = StyleSheet.create({
         height: 70,
     },
 
+    identity: {
+        alignItems: 'flex-start',
+        marginTop: 10,
+        marginLeft: 10,
+    },
+
     splitIconAndInfo: {
         flexDirection: 'row',
         justifyContent: 'flex-start',
         alignItems: 'stretch',
         flex: 1,
+    },
+
+    bottomHoverMenu: {
+        flexDirection: 'column',
+        alignItems: 'stretch',
+        paddingTop: 5,
+        paddingBottom: 10,
+        shadowColor: '#000000',
+        shadowOpacity: 0.8,
+        shadowRadius: 3,
+        shadowOffset: {
+            height: 1,
+            width: 1,
+        },
     },
 });
 

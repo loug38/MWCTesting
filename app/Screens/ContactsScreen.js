@@ -6,7 +6,8 @@
  * Copyright 2016 Lou George All Rights Reserved.                     */
 
 import React, {Component} from 'react';
-import {Text, View, StyleSheet, ListView, TouchableOpacity, Alert} from 'react-native';
+import {Text, View, StyleSheet, ListView, TouchableOpacity, Alert,
+        Navigator} from 'react-native';
 
 //Custom Components
 import ViewContainer from '../../app/Components/ViewContainer';
@@ -47,6 +48,7 @@ class ContactsScreen extends Component{
         this.props.navigator.push({
             ident: "ContactDetails",
             contact: contact,
+            sceneConfig: Navigator.SceneConfigs.PushFromRight,
         });
     }
 
@@ -54,6 +56,7 @@ class ContactsScreen extends Component{
     _sendMessage(contact){
         this.props.navigator.push({
             ident: "Message",
+            sceneConfig: Navigator.SceneConfigs.PushFromRight,
             contact: contact,
         });
     }
@@ -113,7 +116,7 @@ class ContactsScreen extends Component{
                     ref={(drawer) => {return this.drawer = drawer}}
                     renderNavigationView={() => navigationView}>
                 <StatusBarFiller backgroundColor={colorTheme} />
-                <NavigationBarDrawer backgroundColor={colorTheme} title="Feed" action={() => this.drawer.openDrawer()} />
+                <NavigationBarDrawer backgroundColor={colorTheme} title="Contacts" action={() => this.drawer.openDrawer()} />
                 <ListView
                     dataSource={this.state.contactsDataSource}
                     renderRow={(contact) => {return this._renderContactRow(contact)}}

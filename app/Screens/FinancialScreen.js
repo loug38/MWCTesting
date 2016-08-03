@@ -21,7 +21,7 @@ const window = Dimensions.get('window');
 
 class FinancialScreen extends Component{
     _renderDrawer(){
-        return (<NavigationDrawer navigator={this.props.navigator} callingScreen={"News Feed"}/>);
+        return (<NavigationDrawer navigator={this.props.navigator} callingScreen={"Financial"}/>);
     }
 
     render(){
@@ -34,7 +34,7 @@ class FinancialScreen extends Component{
                     ref={(drawer) => {return this.drawer = drawer}}
                     renderNavigationView={() => navigationView}>
                     <StatusBarFiller backgroundColor={colorTheme} />
-                    <NavigationBarDrawer backgroundColor={colorTheme} title="Feed" action={() => this.drawer.openDrawer()} />
+                    <NavigationBarDrawer backgroundColor={colorTheme} title="Financial" action={() => this.drawer.openDrawer()} />
 
                     <View style={styles.container}>
 

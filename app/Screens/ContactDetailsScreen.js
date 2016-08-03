@@ -4,7 +4,7 @@
  * Copyright 2016 Lou George All Rights Reserved.                     */
 
 import React, { Component } from 'react';
-import {View, Text, StyleSheet, ListView, TouchableOpacity } from 'react-native';
+import {View, Text, StyleSheet, ListView, TouchableOpacity, Navigator } from 'react-native';
 
 import ViewContainer from '../../app/Components/ViewContainer';
 import StatusBarFiller from '../../app/Components/StatusBarFiller';
@@ -23,6 +23,7 @@ class ContactDetailsScreen extends Component{
         this.props.navigator.push({
                 ident: "Message",
                 contact: contact,
+                sceneConfig: Navigator.SceneConfigs.PushFromRight,
         });
     }
 

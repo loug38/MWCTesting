@@ -158,7 +158,7 @@ class MainMenuScreen extends Component {
     render(){
         var navigationView = this._renderDrawer();
         return(
-            <View>
+            <ViewContainer>
                 <DrawerLayout
                     drawerWidth={300}
                     drawerPosition={DrawerLayout.positions.left}
@@ -178,7 +178,7 @@ class MainMenuScreen extends Component {
                         </View>
                     </View>
                 </DrawerLayout>
-            </View>
+            </ViewContainer>
         );
     }
 }
@@ -193,6 +193,8 @@ const styles = StyleSheet.create({
         flex: 1,
         flexDirection: 'row',
         backgroundColor: '#ffffff',
+        paddingTop: 5,
+        paddingBottom: 5,
     },
 
     feedContainer: {
@@ -221,8 +223,6 @@ const styles = StyleSheet.create({
         flexWrap: 'wrap',
         marginTop: 5,
         marginBottom: 5,
-        marginLeft: 10,
-        marginRight: 10,
     },
 
     feedData: {

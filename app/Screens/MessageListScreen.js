@@ -6,7 +6,7 @@
  * Copyright 2016 Lou George All Rights Reserved.                     */
 
 import React, { Component } from 'react';
-import {View, Text, StyleSheet, TouchableOpacity, ListView } from 'react-native';
+import {View, Text, StyleSheet, TouchableOpacity, ListView, Navigator } from 'react-native';
 
 //custom components
 import ViewContainer from '../../app/Components/ViewContainer';
@@ -41,6 +41,7 @@ class MessageListScreen extends Component{
     _navigateToMessage(contact){
         this.props.navigator.push({
             ident: "Message",
+            sceneConfig: Navigator.SceneConfigs.PushFromRight,
             contact: contact,
         });
     }
@@ -74,7 +75,7 @@ class MessageListScreen extends Component{
     }
 
     _renderDrawer(){
-        return (<NavigationDrawer navigator={this.props.navigator} callingScreen={"News Feed"}/>);
+        return (<NavigationDrawer navigator={this.props.navigator} callingScreen={"Message Center"}/>);
     }
 
     render(){
@@ -87,7 +88,7 @@ class MessageListScreen extends Component{
                     ref={(drawer) => {return this.drawer = drawer}}
                     renderNavigationView={() => navigationView}>
                     <StatusBarFiller backgroundColor={colorTheme} />
-                    <NavigationBarDrawer backgroundColor={colorTheme} title="Feed" action={() => this.drawer.openDrawer()} />
+                    <NavigationBarDrawer backgroundColor={colorTheme} title="Messages" action={() => this.drawer.openDrawer()} />
                     <View style={styles.container}>
                         <ListView
                             dataSource={this.state.contactsDataSource}
