@@ -1,3 +1,7 @@
+/* Just redirects to the actual app files when launching off of ios   *
+ * platform                                                           *
+ * Copyright 2016 Lou George All Rights Reserved.                     */
+
 import React, { Component } from 'react';
 import { AppRegistry, StyleSheet, Navigator, View, InteractionManager } from 'react-native';
 import AppNavigator from './app/Navigation/AppNavigator';

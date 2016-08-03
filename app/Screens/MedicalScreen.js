@@ -1,25 +1,42 @@
+/* Medical Screen in progress.                                        *
+ * navigator string: "Medical"                                        *
+ * Copyright 2016 Lou George All Rights Reserved.                     */
+
 import React, { Component } from 'react';
 import {View, Text, StyleSheet } from 'react-native';
 
+//custom components
 import ViewContainer from '../../app/Components/ViewContainer';
 import StatusBarFiller from '../../app/Components/StatusBarFiller';
-import NavigationBar from '../../app/Components/NavigationBar';
+import NavigationBarDrawer from '../../app/Components/NavigationBarDrawer';
+import NavigationDrawer from '../../app/Components/NavigationDrawer';
+
+//packages
+import DrawerLayout from 'react-native-drawer-layout';
+
 
 const colorTheme = '#cc0000';
 
 class MedicalScreen extends Component{
+    _renderDrawer(){
+        return (<NavigationDrawer navigator={this.props.navigator} callingScreen={"News Feed"}/>);
+    }
+
     render(){
+        var navigationView = this._renderDrawer();
         return(
             <ViewContainer>
                 <StatusBarFiller backgroundColor={colorTheme} />
-                <NavigationBar   backgroundColor={colorTheme}
-                                leftWord="Back"
-                                title="Medical"
-                                rightWord=""
-                                nav={this.props.navigator}/>
-                <Text>
-                    Medical Screen
-                </Text>
+                <DrawerLayout
+                    drawerWidth={300}
+                    drawerPosition={DrawerLayout.positions.left}
+                    ref={(drawer) => {return this.drawer = drawer}}
+                    renderNavigationView={() => navigationView}>
+                    <NavigationBarDrawer backgroundColor={colorTheme} title="Feed" action={() => this.drawer.openDrawer()} />
+                    <Text>
+                        Medical Screen
+                    </Text>
+                </DrawerLayout>
             </ViewContainer>
         );
     }

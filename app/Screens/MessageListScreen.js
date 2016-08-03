@@ -1,12 +1,24 @@
+/* This is the message center. It lists out conversations that are    *
+ * currently hapenning. Each conversation can be pressed and it will  *
+ * open the messaging history between the user and the selected       *
+ * contact.                                                           *
+ * navigator string: "Message Center"                                 *
+ * Copyright 2016 Lou George All Rights Reserved.                     */
+
 import React, { Component } from 'react';
 import {View, Text, StyleSheet, TouchableOpacity, ListView } from 'react-native';
 
-import Icon from 'react-native-vector-icons/FontAwesome';
-
+//custom components
 import ViewContainer from '../../app/Components/ViewContainer';
 import StatusBarFiller from '../../app/Components/StatusBarFiller';
-import NavigationBar from '../../app/Components/NavigationBar';
+import NavigationBarDrawer from '../../app/Components/NavigationBarDrawer';
+import NavigationDrawer from '../../app/Components/NavigationDrawer';
 
+//imports
+import Icon from 'react-native-vector-icons/FontAwesome';
+import DrawerLayout from 'react-native-drawer-layout';
+
+//globals
 const colorTheme = '#6E5BAA';
 
 const contacts = [
@@ -61,21 +73,28 @@ class MessageListScreen extends Component{
         )
     }
 
+    _renderDrawer(){
+        return (<NavigationDrawer navigator={this.props.navigator} callingScreen={"News Feed"}/>);
+    }
+
     render(){
+        var navigationView = this._renderDrawer();
         return(
             <ViewContainer>
-                <StatusBarFiller backgroundColor={colorTheme} />
-                <NavigationBar   backgroundColor={colorTheme}
-                                leftWord="Back"
-                                title="Messages"
-                                rightWord=""
-                                nav={this.props.navigator}/>
-                <View style={styles.container}>
-                    <ListView
-                        dataSource={this.state.contactsDataSource}
-                        renderRow={(contact) => {return this._renderMessageHistory(contact)}}
-                    />
-                </View>
+                <DrawerLayout
+                    drawerWidth={300}
+                    drawerPosition={DrawerLayout.positions.left}
+                    ref={(drawer) => {return this.drawer = drawer}}
+                    renderNavigationView={() => navigationView}>
+                    <StatusBarFiller backgroundColor={colorTheme} />
+                    <NavigationBarDrawer backgroundColor={colorTheme} title="Feed" action={() => this.drawer.openDrawer()} />
+                    <View style={styles.container}>
+                        <ListView
+                            dataSource={this.state.contactsDataSource}
+                            renderRow={(contact) => {return this._renderMessageHistory(contact)}}
+                        />
+                    </View>
+                </DrawerLayout>
             </ViewContainer>
         );
     }

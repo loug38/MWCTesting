@@ -1,13 +1,22 @@
+/* Shows a list of contacts available to the user. This screen is the *
+ * first screen after pressing the contacts butotn in the menu. Each  *
+ * contact can be pressed for more details, or the user can press the *
+ * envelope button to open a direct message to the user.              *
+ * navigator string: "Contacts"                                       *
+ * Copyright 2016 Lou George All Rights Reserved.                     */
+
 import React, {Component} from 'react';
 import {Text, View, StyleSheet, ListView, TouchableOpacity, Alert} from 'react-native';
 
 //Custom Components
 import ViewContainer from '../../app/Components/ViewContainer';
 import StatusBarFiller from '../../app/Components/StatusBarFiller';
-import NavigationBar from '../../app/Components/NavigationBar';
+import NavigationBarDrawer from '../../app/Components/NavigationBarDrawer';
+import NavigationDrawer from '../../app/Components/NavigationDrawer';
 
 //Packages
 import Icon from 'react-native-vector-icons/FontAwesome';
+import DrawerLayout from 'react-native-drawer-layout';
 
 //globals
 var colorTheme = '#007ACC';
@@ -90,20 +99,26 @@ class ContactsScreen extends Component{
         )
     }
 
+    _renderDrawer(){
+        return (<NavigationDrawer navigator={this.props.navigator} callingScreen={"Contacts"}/>);
+    }
+
     render(){
+        var navigationView = this._renderDrawer();
         return(
             <ViewContainer>
+                <DrawerLayout
+                    drawerWidth={300}
+                    drawerPosition={DrawerLayout.positions.left}
+                    ref={(drawer) => {return this.drawer = drawer}}
+                    renderNavigationView={() => navigationView}>
                 <StatusBarFiller backgroundColor={colorTheme} />
-                <NavigationBar backgroundColor={colorTheme}
-                                leftWord="Back"
-                                title="Contacts"
-                                rightWord=""
-                                nav={this.props.navigator}
-                />
+                <NavigationBarDrawer backgroundColor={colorTheme} title="Feed" action={() => this.drawer.openDrawer()} />
                 <ListView
                     dataSource={this.state.contactsDataSource}
                     renderRow={(contact) => {return this._renderContactRow(contact)}}
                 />
+                </DrawerLayout>
             </ViewContainer>
         );
     }

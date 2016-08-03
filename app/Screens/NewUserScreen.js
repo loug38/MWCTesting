@@ -1,3 +1,8 @@
+/* New user screen lets a user set up an account. All the fields      *
+ * except for username and password must match the database           *
+ * navigator string: "NewUser"                                        *
+ * Copyright 2016 Lou George All Rights Reserved.                     */
+
 import React, { Component } from 'react';
 import { StyleSheet, Text, View, TextInput, TouchableOpacity, Image,
          Dimensions, Alert, ScrollView} from 'react-native';

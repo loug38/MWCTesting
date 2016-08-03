@@ -1,3 +1,12 @@
+/* This class controls navigation from page to page and the animation *
+ * of the transition. To add more page navigations just add the, to   *
+ * the switch statement inside of _renderScene. Then when referencing *
+ * the navigator set the ident field to the keyword you use in the    *
+ * switch.                                                            *
+ * send in sceneConfig.(insertStyleHere) to use different animation   *
+ * Copyright 2016 Lou George All Rights Reserved.                     */
+
+
 import React, {Component} from 'react';
 import {StyleSheet, Navigator, View, Text} from 'react-native';
 
@@ -10,6 +19,7 @@ import ContactDetailsScreen from '../../app/Screens/ContactDetailsScreen';
 import MessageScreen from '../../app/Screens/MessageScreen';
 import MedicalScreen from '../../app/Screens/MedicalScreen';
 import MessageListScreen from '../../app/Screens/MessageListScreen';
+import NavigationDrawer from '../../app/Components/NavigationDrawer';
 
 class AppNavigator extends Component {
 
@@ -73,6 +83,10 @@ class AppNavigator extends Component {
                 return(
                     <MessageListScreen {...globalNavigatorProps}
                         contact={route.contact}/>
+                )
+            case "News Feed":
+                return(
+                    <MainMenuScreen {...globalNavigatorProps} />
                 )
             default:
                 return(

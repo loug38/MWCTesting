@@ -1,3 +1,8 @@
+/* Shows the detail description of the contact name, their job, and   *
+ * what that job does in relation to the user.                        *
+ * navigator string: "ContactDetails"                                 *
+ * Copyright 2016 Lou George All Rights Reserved.                     */
+
 import React, { Component } from 'react';
 import {View, Text, StyleSheet, ListView, TouchableOpacity } from 'react-native';
 

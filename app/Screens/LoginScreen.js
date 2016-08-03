@@ -1,3 +1,8 @@
+/* Login Screen has 2 options, to log in directly or set up a new     *
+ * account.                                                           *
+ * navigator string: "Login"                                          *
+ * Copyright 2016 Lou George All Rights Reserved.                     */
+
 import React, { Component } from 'react';
 import { StyleSheet, Text, View, TextInput, TouchableOpacity, Image,
          Dimensions, Navigator} from 'react-native';

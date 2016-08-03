@@ -1,3 +1,9 @@
+/* Message screen is where the message history between the user and a *
+ * given contact.                                                     *
+ * navigator string: "Message"                                        *
+ * Copyright 2016 Lou George All Rights Reserved.                     */
+
+
 import React, { Component } from 'react';
 import {View, Text, StyleSheet, TextInput, TouchableHighlight, Dimensions } from 'react-native';
 
@@ -13,7 +19,7 @@ class MessageScreen extends Component{
         super(props);
         this.state = {
             message: '',
-            mssageList: [],
+            messageList: [],
         };
     }
 
