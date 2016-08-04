@@ -159,6 +159,7 @@ class MainMenuScreen extends Component {
         var navigationView = this._renderDrawer();
         return(
             <ViewContainer>
+                <StatusBarFiller backgroundColor= {colorTheme} />
                 <DrawerLayout
                     drawerWidth={300}
                     drawerPosition={DrawerLayout.positions.left}
@@ -166,7 +167,6 @@ class MainMenuScreen extends Component {
                     renderNavigationView={() => navigationView}>
                     <View style={styles.feedContainer}>
                         {/* This is just the custom navigation bar for this screen */}
-                        <StatusBarFiller backgroundColor= {colorTheme} />
                         <NavigationBarDrawer backgroundColor={colorTheme} title="Feed" action={() => this.drawer.openDrawer()} />
 
                         {/* This is where the lsitview actually starts */}

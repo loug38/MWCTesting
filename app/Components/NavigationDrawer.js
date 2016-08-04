@@ -10,15 +10,17 @@
 
 
 import React, {Component} from 'react';
-import {StyleSheet, Text, View,TouchableOpacity,
+import {StyleSheet, Text, View,TouchableOpacity, ScrollView,
         Navigator, Dimensions, ListView, Image} from 'react-native';
 
 //Custom Components
 import ViewContainer from '../../app/Components/ViewContainer';
+import StatusBarFiller from '../../app/Components/StatusBarFiller';
 
 //packages
 import Icon from 'react-native-vector-icons/FontAwesome';
 import DrawerLayout from 'react-native-drawer-layout';
+
 
 const colorTheme = '#007ACC';
 
@@ -33,6 +35,10 @@ const menu = [
     {item: "Calendar", icon: "calendar"},
     {item: "Claims", icon: "legal"},
     {item: "Message Center", icon: "envelope"},
+    {item: "Flood", icon: "rebel"},
+    {item: "Flood", icon: "rebel"},
+    {item: "Flood", icon: "rebel"},
+    {item: "Flood", icon: "rebel"},
 ];
 
 //Main navigation for the app
@@ -106,37 +112,39 @@ class NavigationDrawer extends Component {
         return (
             <View style={styles.navDrawer}>
                 {/* Top of the navigation drawer (background + user profile) */}
-                <View style={styles.topImage}>
-                    <Image style={{resizeMode: 'cover', width: 300, height: 150, flex: 1}}
-                           source={require('../../img/googlenownewyork.png')}>
-                           <View style={{marginLeft: 30, marginTop: 35}}>
-                                <View style={styles.circleBackground}>
-                                    <Icon name='user' size={50} color={'#ffffff'} style={{marginLeft:15, marginTop:5}}/>
-                                </View>
-                           </View>
-                           <View style={styles.identity}>
-                                <Text style={{fontSize: 12, fontWeight: 'bold', color: '#ffffff', backgroundColor: 'transparent'}}>
-                                    First Last
-                                </Text>
-                                <Text style={{fontSize: 12, color: '#ffffff', backgroundColor: 'transparent'}}>
-                                    username@gmail.com
-                                </Text>
-                           </View>
-                    </Image>
-                </View>
-            
-                {/* The actual navigation menu */}
-                <View style={{borderBottomWidth: 1, borderBottomColor: '#666666', padding: 5}}>
-                    <Text style={{marginLeft: 3, fontSize: 17, color: '#666666'}}>
-                        Navigation
-                    </Text>
-                </View>
-                <ListView
-                    dataSource={this.state.menuDataSource}
-                    renderRow={(menuRow) => {return this._renderMenuRow(menuRow)}}
-                    removeClippedSubviews={false}
-                    initialListSize={10}
-                />
+                <ScrollView>
+                    <View style={styles.topImage}>
+                        <Image style={{resizeMode: 'cover', width: 300, height: 150, flex: 1}}
+                               source={require('../../img/SanFranciscoBackground.png')}>
+                               <View style={{marginLeft: 30, marginTop: 35}}>
+                                    <View style={styles.circleBackground}>
+                                        <Icon name='user' size={50} color={'#ffffff'} style={{marginLeft:15, marginTop:5}}/>
+                                    </View>
+                               </View>
+                               <View style={styles.identity}>
+                                    <Text style={{fontSize: 12, fontWeight: 'bold', color: '#ffffff', backgroundColor: 'transparent'}}>
+                                        First Last
+                                    </Text>
+                                    <Text style={{fontSize: 12, color: '#ffffff', backgroundColor: 'transparent'}}>
+                                        username@gmail.com
+                                    </Text>
+                               </View>
+                        </Image>
+                    </View>
+
+                    {/* The actual navigation menu */}
+                    <View style={{borderBottomWidth: 1, borderBottomColor: '#666666', padding: 5}}>
+                        <Text style={{marginLeft: 3, fontSize: 17, color: '#666666'}}>
+                            Navigation
+                        </Text>
+                    </View>
+                    <ListView
+                        dataSource={this.state.menuDataSource}
+                        renderRow={(menuRow) => {return this._renderMenuRow(menuRow)}}
+                        removeClippedSubviews={false}
+                        initialListSize={10}
+                    />
+                </ScrollView>
 
                 {/* Menu on the bottom of the dash that hovers above the ListView */}
                 <View style={styles.bottomHoverMenu}>
@@ -175,7 +183,8 @@ const styles = StyleSheet.create({
 
     navDrawer: {
         flex: 1,
-        backgroundColor: '#efefef',
+        backgroundColor: '#ffffff',
+        marginTop: 20,
     },
 
     drawerMenuText: {
