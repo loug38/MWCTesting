@@ -20,6 +20,7 @@ import MessageScreen from '../../app/Screens/MessageScreen';
 import MedicalScreen from '../../app/Screens/MedicalScreen';
 import MessageListScreen from '../../app/Screens/MessageListScreen';
 import NavigationDrawer from '../../app/Components/NavigationDrawer';
+import ClaimsScreen from '../../app/Screens/ClaimsScreen';
 
 class AppNavigator extends Component {
 
@@ -44,6 +45,7 @@ class AppNavigator extends Component {
 
     _renderScene(route, navigator){
         var globalNavigatorProps = {navigator}
+
         switch(route.ident){
             case "Login":
                 return(
@@ -83,10 +85,15 @@ class AppNavigator extends Component {
                 return(
                     <MessageListScreen {...globalNavigatorProps}
                         contact={route.contact}/>
-                )
+                );
             case "News Feed":
                 return(
                     <MainMenuScreen {...globalNavigatorProps} />
+                );
+            case "Claims":
+                return(
+                    <ClaimsScreen {...globalNavigatorProps}
+                        contact={route.contact}/>
                 );
             default:
                 return(

@@ -11,16 +11,15 @@
 
 import React, {Component} from 'react';
 import {StyleSheet, Text, View,TouchableOpacity, ScrollView,
-        Navigator, Dimensions, ListView, Image} from 'react-native';
+        Navigator, Dimensions, ListView, Image, PropTypes} from 'react-native';
 
 //Custom Components
 import ViewContainer from '../../app/Components/ViewContainer';
 import StatusBarFiller from '../../app/Components/StatusBarFiller';
+import MainMenu from '../../app/Screens/MainMenuScreen';
 
 //packages
 import Icon from 'react-native-vector-icons/FontAwesome';
-import DrawerLayout from 'react-native-drawer-layout';
-
 
 const colorTheme = '#007ACC';
 
@@ -35,10 +34,6 @@ const menu = [
     {item: "Calendar", icon: "calendar"},
     {item: "Claims", icon: "legal"},
     {item: "Message Center", icon: "envelope"},
-    {item: "Flood", icon: "rebel"},
-    {item: "Flood", icon: "rebel"},
-    {item: "Flood", icon: "rebel"},
-    {item: "Flood", icon: "rebel"},
 ];
 
 //Main navigation for the app
@@ -77,15 +72,16 @@ class NavigationDrawer extends Component {
         if (menuItem == this.props.callingScreen) {
             return;
         }
+
         switch (menuItem) {
             case 'News Feed':
                 this.props.navigator.push({ident: "News Feed"});
                 break;
             case 'Contacts':
-                this.props.navigator.push({ident: "Contacts",});
+                this.props.navigator.push({ident: "Contacts", drawerStatus: 'open'});
                 break;
             case 'Financial':
-                this.props.navigator.push({ident: "Financial",});
+                this.props.navigator.push({ident: "Financial"});
                 break;
             case 'Message':
                 this.props.navigator.push({ident: "Message",});
@@ -98,6 +94,9 @@ class NavigationDrawer extends Component {
                 break;
             case 'News Feed':
                 this.props.navigator.push({ident: "News Feed"});
+                break;
+            case "Claims":
+                this.props.navigator.push({ident: "Claims"});
                 break;
             case 'Logout':
                 this.props.navigator.popToTop();
@@ -112,6 +111,7 @@ class NavigationDrawer extends Component {
         return (
             <View style={styles.navDrawer}>
                 {/* Top of the navigation drawer (background + user profile) */}
+                <View style={{height:20, backgroundColor: colorTheme}} />
                 <ScrollView>
                     <View style={styles.topImage}>
                         <Image style={{resizeMode: 'cover', width: 300, height: 150, flex: 1}}
@@ -184,7 +184,7 @@ const styles = StyleSheet.create({
     navDrawer: {
         flex: 1,
         backgroundColor: '#ffffff',
-        marginTop: 20,
+        marginRight: 5,
     },
 
     drawerMenuText: {
@@ -245,10 +245,10 @@ const styles = StyleSheet.create({
         paddingBottom: 10,
         shadowColor: '#000000',
         shadowOpacity: 0.8,
-        shadowRadius: 3,
+        shadowRadius: 2,
         shadowOffset: {
             height: 1,
-            width: 1,
+            width: 0,
         },
     },
 });

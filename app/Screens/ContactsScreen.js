@@ -18,6 +18,7 @@ import NavigationDrawer from '../../app/Components/NavigationDrawer';
 //Packages
 import Icon from 'react-native-vector-icons/FontAwesome';
 import DrawerLayout from 'react-native-drawer-layout';
+import Communications from 'react-native-communications';
 
 //globals
 var colorTheme = '#007ACC';
@@ -26,8 +27,10 @@ const contacts = [
     {name: "Barry Allen", job: "Physician", contact:"tf@gmail.com"},
     {name: "Guy Gardner", job: "Employer", contact:"gl2@gmail.com"},
     {name: "Wally West", job: "Supervisor", contact:"tf2@gmail.com"},
-    {name: "Dinah Lance", job: "Nurse Case Manager", contact:"tbc@gmail.com"}
-]
+    {name: "Dinah Lance", job: "Nurse", contact:"tbc@gmail.com"},
+    {name: "Oliver Queen", job: "Case Manager", contact:"tga@gmail.com"},
+];
+var offSet = 0;
 
 class ContactsScreen extends Component{
 
@@ -63,11 +66,30 @@ class ContactsScreen extends Component{
 
     //in the case the call button has been pressed
     _makeCall(contact){
-        Alert.alert(
-            contact.name,
-            'Here is where calls will go',
-            [{text: 'OK', onPress:() => console.log('OK')}]
-        );
+        Communications.phonecall('0123456789', true);
+    }
+
+    _iconSelection(contact){
+        switch(contact.job){
+            case 'Physician':
+                return 'hospital-o';
+                break;
+            case 'Nurse':
+                return 'plus';
+                break;
+            case 'Claims Examiner':
+                return 'bank';
+                break;
+            case 'Employer':
+                return 'user';
+                break;
+            case 'Supervisor':
+                return 'black-tie';
+                break;
+            case 'Case Manager':
+                return 'folder';
+                break;
+        }
     }
 
 
@@ -77,7 +99,9 @@ class ContactsScreen extends Component{
             //Icon position/name InfoIcon (Pressable for more info)
             <View style={styles.rows}>
                 <TouchableOpacity style={styles.contactRow} onPress={(event) => this._navigateToContactDetails(contact)}>
-                    <Icon name="user" size={25} style={styles.contactIcon} />
+                    <View style={styles.circleContainer}>
+                        <Icon name={this._iconSelection(contact)} size={30} style={styles.circle} />
+                    </View>
                     <View style={styles.info}>
                         <Text style={styles.contactJob}>
                             {contact.job}
@@ -86,17 +110,19 @@ class ContactsScreen extends Component{
                             {contact.name}
                         </Text>
                     </View>
-                    <View style={{flex: 1}}/>
-                    <Icon   name="envelope"
-                            size={25}
-                            style={styles.infoIcon}
-                            onPress={(event) => this._sendMessage(contact)}
-                    />
-                    <Icon   name="phone"
-                            size={25}
-                            style={styles.infoIcon}
-                            onPress={(event) => this._makeCall(contact)}
-                    />
+                    <View style={{flex: 1}} />
+                        <TouchableOpacity onPress={() => this._sendMessage(contact)}>
+                            <Icon   name="envelope"
+                                    size={25}
+                                    style={styles.infoIcon}
+                            />
+                        </TouchableOpacity>
+                        <TouchableOpacity onPress={() => this._makeCall(contact)}>
+                            <Icon   name="phone"
+                                    size={25}
+                                    style={styles.infoIcon}
+                            />
+                        </TouchableOpacity>
                 </TouchableOpacity>
             </View>
         )
@@ -109,7 +135,7 @@ class ContactsScreen extends Component{
     render(){
         var navigationView = this._renderDrawer();
         return(
-            <ViewContainer>
+            <View style={styles.container}>
                 <DrawerLayout
                     drawerWidth={300}
                     drawerPosition={DrawerLayout.positions.left}
@@ -122,12 +148,19 @@ class ContactsScreen extends Component{
                     renderRow={(contact) => {return this._renderContactRow(contact)}}
                 />
                 </DrawerLayout>
-            </ViewContainer>
+            </View>
         );
     }
 }
 
 const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        backgroundColor: '#ffffff',
+    },
+
     contactRow: {
         marginTop: 15,
         flexDirection: 'row',
@@ -149,7 +182,7 @@ const styles = StyleSheet.create({
         color: colorTheme,
         marginLeft: 20,
         paddingRight: 10,
-        paddingTop: 5,
+        paddingTop: 15,
     },
 
     contactJob:{
@@ -158,14 +191,33 @@ const styles = StyleSheet.create({
 
     contactName:{
         fontSize: 14,
-        color: '#999999'
+        color: '#999999',
+        marginTop: 5,
     },
 
     rows: {
-        borderBottomWidth: 1,
-        borderBottomColor: '#dddddd',
-        paddingBottom: 15,
+         paddingBottom: 25,
+         borderBottomWidth: 1,
+         borderBottomColor: '#dddddd',
     },
+
+    circleContainer: {
+        flexDirection: 'column',
+        justifyContent: 'center',
+        alignItems: 'center',
+        marginLeft: 10,
+        marginRight: 10,
+        height: 50,
+        width: 50,
+        overflow: 'hidden',
+        borderRadius: 25,
+        backgroundColor: colorTheme,
+    },
+
+    circle: {
+        color: 'white',
+    },
+
 });
 
 module.exports = ContactsScreen;

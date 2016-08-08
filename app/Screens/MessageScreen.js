@@ -38,7 +38,7 @@ class MessageScreen extends Component{
                                 rightWord=""
                                 nav={this.props.navigator}/>
                 <View style={styles.chatContainer}>
-                    <Text style={{color: '#000000'}}> Chat </Text>
+                    <Text style={{color: '#000000'}}> Message History </Text>
                 </View>
                 <View style={styles.inputContainer}>
                     <View style={styles.textContainer}>
@@ -65,6 +65,7 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         alignItems: 'stretch',
+        backgroundColor: '#ffffff',
     },
 
     chatContainer: {

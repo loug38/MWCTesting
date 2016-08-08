@@ -6,7 +6,7 @@
 
 import React, {Component} from 'react';
 import {StyleSheet, AppRegistry, Text, View,TouchableOpacity, ScrollView,
-        Navigator, Dimensions, InteractionManager, ListView, Image} from 'react-native';
+        Navigator, Dimensions, InteractionManager, ListView, Image,} from 'react-native';
 
 //Custom Components
 import ViewContainer from '../../app/Components/ViewContainer';
@@ -99,6 +99,9 @@ class MainMenuScreen extends Component {
             case 'Message Center':
                 this.props.navigator.push({ident: "Message Center"});
                 break;
+            case 'Claims':
+                this.props.navigator.push({ident: "Claims"});
+                break;
         };
     }
 
@@ -155,6 +158,10 @@ class MainMenuScreen extends Component {
         return (<NavigationDrawer navigator={this.props.navigator} callingScreen={"News Feed"}/>);
     }
 
+    _closeDrawer(){
+        this.drawer.closeDrawer();
+    }
+
     render(){
         var navigationView = this._renderDrawer();
         return(
@@ -164,8 +171,10 @@ class MainMenuScreen extends Component {
                     drawerWidth={300}
                     drawerPosition={DrawerLayout.positions.left}
                     ref={(drawer) => {return this.drawer = drawer}}
+                    ref2={this}
                     renderNavigationView={() => navigationView}>
                     <View style={styles.feedContainer}>
+
                         {/* This is just the custom navigation bar for this screen */}
                         <NavigationBarDrawer backgroundColor={colorTheme} title="Feed" action={() => this.drawer.openDrawer()} />
 
@@ -206,8 +215,9 @@ const styles = StyleSheet.create({
     },
 
     iconContainer: {
-        paddingLeft: 10,
-        paddingTop: 10,
+        flexDirection: 'column',
+        justifyContent: 'center',
+        alignItems: 'center',
         width: 75,
     },
 

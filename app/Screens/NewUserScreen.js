@@ -198,7 +198,7 @@ const styles = StyleSheet.create({
         marginLeft: 20,
         marginRight: 20,
         borderBottomWidth: 1,
-        borderBottomColor: '#aaaaaa',
+        borderBottomColor: '#000000',
     },
 
     textFields:

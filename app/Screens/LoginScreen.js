@@ -69,6 +69,7 @@ class LoginScreen extends Component{
                     style={styles.newUserButton}>
                     New Account
                 </Button>
+                <Text style={{fontSize: 10, marginTop: 40, color:'#666666'}}> Powered by </Text>
                 <Image style={styles.dcLogo}
                     source={require('../../img/datacareLogo.png')}
                 />
@@ -94,8 +95,8 @@ const styles = StyleSheet.create({
     },
 
     dcLogo:{
-        marginTop: 20,
         width: 200,
+        height: 100,
         alignSelf: 'center',
         resizeMode: 'contain',
     },

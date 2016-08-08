@@ -44,7 +44,6 @@ class FinancialScreen extends Component{
                             <TouchableOpacity>
                                 <View style={styles.imgContainer}>
                                     <Text style={styles.title}> Payments </Text>
-                                    <Text style={styles.title}>   </Text>
                                     <Icon name='money' size={100} color='#aaaaaa' style={styles.images}/>
                                 </View>
                             </TouchableOpacity>
@@ -52,8 +51,7 @@ class FinancialScreen extends Component{
                             {/* Top Right */}
                             <TouchableOpacity>
                                 <View style={styles.imgContainer}>
-                                    <Text style={styles.title}> Take Photo of </Text>
-                                    <Text style={styles.title}> Documents </Text>
+                                    <Text style={styles.title}> {`Take Photo of Documents`} </Text>
                                     <Icon name='camera' size={100} color='#aaaaaa' style={styles.images}/>
                                 </View>
                             </TouchableOpacity>
@@ -64,8 +62,7 @@ class FinancialScreen extends Component{
                             {/* Bottome Left */}
                             <TouchableOpacity>
                                 <View style={styles.imgContainer}>
-                                    <Text style={styles.title}> Request Driving </Text>
-                                    <Text style={styles.title}> Reimbursement</Text>
+                                    <Text style={styles.title}> {`Request Driving Reimbursement`}</Text>
                                     <Icon name='car' size={100} color='#aaaaaa' style={styles.images}/>
                                 </View>
                             </TouchableOpacity>
@@ -74,7 +71,6 @@ class FinancialScreen extends Component{
                             <TouchableOpacity>
                                 <View style={styles.imgContainer}>
                                     <Text style={styles.title}> Payments </Text>
-                                    <Text style={styles.title}>   </Text>
                                     <Icon name='money' size={100} color='#aaaaaa' style={styles.images}/>
                                 </View>
                             </TouchableOpacity>
@@ -91,6 +87,7 @@ const styles = StyleSheet.create({
         flex: 1,
         padding: 5,
         flexDirection: 'column',
+        backgroundColor: '#ffffff',
     },
 
     rows: {
@@ -103,11 +100,19 @@ const styles = StyleSheet.create({
     },
 
     imgContainer: {
-        flex: 1,
+        width: ((window.width /2) - 35),
+        height: ((window.height /2) - 80),
         marginLeft: 10,
         marginRight: 10,
         marginBottom: 10,
         marginTop: 10,
+        shadowRadius: 1,
+        shadowColor: '#000000',
+        shadowOffset:{
+            height: 1,
+            width: 0,
+        },
+        shadowOpacity: 0.8,
     },
 
     images: {
@@ -116,6 +121,7 @@ const styles = StyleSheet.create({
 
     title: {
         alignSelf: 'center',
+        paddingTop: 20,
         color: '#888888',
         fontSize: 15,
     }

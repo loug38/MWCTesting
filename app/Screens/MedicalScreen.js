@@ -25,7 +25,7 @@ class MedicalScreen extends Component{
     render(){
         var navigationView = this._renderDrawer();
         return(
-            <ViewContainer>
+            <View style={styles.container}>
                 <StatusBarFiller backgroundColor={colorTheme} />
                 <DrawerLayout
                     drawerWidth={300}
@@ -37,13 +37,17 @@ class MedicalScreen extends Component{
                         Medical Screen
                     </Text>
                 </DrawerLayout>
-            </ViewContainer>
+            </View>
         );
     }
 }
 
 const styles = StyleSheet.create({
-
+    container: {
+        flex: 1,
+        flexDirection: 'column',
+        backgroundColor: '#ffffff',
+    }
 });
 
 module.exports = MedicalScreen;

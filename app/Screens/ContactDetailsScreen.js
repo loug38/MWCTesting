@@ -29,7 +29,7 @@ class ContactDetailsScreen extends Component{
 
     render(){
         return(
-            <ViewContainer>
+            <View style={styles.container}>
                 <StatusBarFiller backgroundColor={colorTheme} />
                 <NavigationBar   backgroundColor={colorTheme}
                                  leftWord="Back"
@@ -60,12 +60,20 @@ class ContactDetailsScreen extends Component{
                         </Text>
                     </View>
                 </View>
-            </ViewContainer>
+            </View>
         );
     }
 }
 
 const styles = StyleSheet.create({
+    container:{
+        flex: 1,
+        flexDirection: 'column',
+        justifyContent: 'flex-start',
+        alignItems: 'stretch',
+        backgroundColor: '#ffffff',
+    },
+
     name: {
         fontSize: 30,
         color: '#333333',
