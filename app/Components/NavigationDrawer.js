@@ -10,7 +10,7 @@
 
 
 import React, {Component} from 'react';
-import {StyleSheet, Text, View,TouchableOpacity, ScrollView,
+import {StyleSheet, Text, View,TouchableOpacity, ScrollView, Alert,
         Navigator, Dimensions, ListView, Image, PropTypes} from 'react-native';
 
 //Custom Components
@@ -25,6 +25,12 @@ const colorTheme = '#007ACC';
 
 //globals
 const window = Dimensions.get('window');
+
+const claims = [
+    {claimNumber: "12345"},
+    {claimNumber: "23456"},
+    {claimNumber: "34567"},
+];
 
 const menu = [
     {item: "News Feed", icon: "newspaper-o"},
@@ -45,8 +51,11 @@ class NavigationDrawer extends Component {
     constructor(props){
         super(props);
         var ds = new ListView.DataSource({rowHasChanged: (r1,r2) => r1 != r2});
+        var ds2 = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 != r2});
         this.state ={
             menuDataSource: ds.cloneWithRows(menu),
+            caseDataSource: ds.cloneWithRows(claims),
+            selectedClaim: claims[0],
         };
     }
 
@@ -75,28 +84,25 @@ class NavigationDrawer extends Component {
 
         switch (menuItem) {
             case 'News Feed':
-                this.props.navigator.push({ident: "News Feed"});
+                this.props.navigator.replaceWithAnimation({ident: "News Feed"});
                 break;
             case 'Contacts':
-                this.props.navigator.push({ident: "Contacts", drawerStatus: 'open'});
+                this.props.navigator.replaceWithAnimation({ident: "Contacts"});
                 break;
             case 'Financial':
-                this.props.navigator.push({ident: "Financial"});
+                this.props.navigator.replaceWithAnimation({ident: "Financial"});
                 break;
             case 'Message':
-                this.props.navigator.push({ident: "Message",});
+                this.props.navigator.replaceWithAnimation({ident: "Message"});
                 break;
             case 'Medical':
-                this.props.navigator.push({ident: "Medical"});
+                this.props.navigator.replaceWithAnimation({ident: "Medical"});
                 break;
             case 'Message Center':
-                this.props.navigator.push({ident: "Message Center"});
-                break;
-            case 'News Feed':
-                this.props.navigator.push({ident: "News Feed"});
+                this.props.navigator.replaceWithAnimation({ident: "Message Center"});
                 break;
             case "Claims":
-                this.props.navigator.push({ident: "Claims"});
+                this.props.navigator.replaceWithAnimation({ident: "Claims"});
                 break;
             case 'Logout':
                 this.props.navigator.popToTop();
@@ -116,11 +122,20 @@ class NavigationDrawer extends Component {
                     <View style={styles.topImage}>
                         <Image style={{resizeMode: 'cover', width: 300, height: 150, flex: 1}}
                                source={require('../../img/SanFranciscoBackground.png')}>
-                               <View style={{marginLeft: 30, marginTop: 35}}>
+                               <TouchableOpacity onPress={() => Alert.alert(
+                                   "Pick a claim",
+                                   "Select a claim from below",
+                                   [
+                                       {text: "#12345", onPress: () => this.setState({selectedClaim: claims[0]})},
+                                       {text: "#23456", onPress: () => this.setState({selectedClaim: claims[1]})},
+                                       {text: "#34567", onPress: () => this.setState({selectedClaim: claims[2]})},
+                                   ]
+                                )}>
                                     <View style={styles.circleBackground}>
-                                        <Icon name='user' size={50} color={'#ffffff'} style={{marginLeft:15, marginTop:5}}/>
+                                        <Icon name='user' size={45} color={'#ffffff'}/>
+                                        <Text style={{color:'#ffffff', fontSize: 10}}> {this.state.selectedClaim.claimNumber} </Text>
                                     </View>
-                               </View>
+                               </TouchableOpacity>
                                <View style={styles.identity}>
                                     <Text style={{fontSize: 12, fontWeight: 'bold', color: '#ffffff', backgroundColor: 'transparent'}}>
                                         First Last
@@ -193,10 +208,14 @@ const styles = StyleSheet.create({
     },
 
     iconContainer: {
-        paddingLeft: 10,
-        paddingRight: 10,
+        flexDirection: 'column',
+        alignItems: 'center',
+        justifyContent: 'center',
         paddingTop: 10,
-        width: 75,
+        paddingLeft: 5,
+        paddingRight: 10,
+        paddingBottom: 5,
+        width: 50,
     },
 
     drawerRows: {
@@ -218,11 +237,16 @@ const styles = StyleSheet.create({
     },
 
     circleBackground: {
+        flexDirection: 'column',
+        alignItems: 'center',
+        justifyContent: 'center',
         borderRadius: 35,
         overflow: 'hidden',
         backgroundColor: colorTheme,
         width: 70,
         height: 70,
+        marginLeft: 30,
+        marginTop: 35,
     },
 
     identity: {

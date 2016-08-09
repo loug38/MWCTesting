@@ -1,8 +1,8 @@
 package com.mwctesting;
 
 import com.facebook.react.ReactActivity;
-import com.react.rnspinkit.RNSpinkitPackage;
 import com.oblador.vectoricons.VectorIconsPackage;
+import com.react.rnspinkit.RNSpinkitPackage;
 
 public class MainActivity extends ReactActivity {
 
