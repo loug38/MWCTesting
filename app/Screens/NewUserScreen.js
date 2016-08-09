@@ -76,99 +76,99 @@ class NewUserScreen extends Component
     {
         return (
             <ScrollView>
-            <ViewContainer>
-                {/* Status bar and navigation bar*/}
-                <StatusBarFiller backgroundColor={colorTheme} />
-                <NavigationBar  backgroundColor={colorTheme}
-                                leftWord="Back"
-                                title="Create Account"
-                                rightWord=""
-                                nav={this.props.navigator}
-                />
-                {/* BODY */}
-                {/* DatePicker for documentation check out
-                    https://github.com/xgfe/react-native-datepicker*/}
-                <Text style={styles.fieldDescription}>
-                    Birthdate
-                </Text>
-                <View style={styles.container}>
-                    <DatePicker
-                        style={{width:200}}
-                        date={this.state.date}
-                        mode='date'
-                        placeholder='Birthday'
-                        format="MM-DD-YYYY"
-                        minDate="01-01-1900"
-                        confirmBtnText="Confirm"
-                        cancelBtnText="Cancel"
-                        onDateChange={(date) => {this.setState({date: date});}}
+                <ViewContainer>
+                    {/* Status bar and navigation bar*/}
+                    <StatusBarFiller backgroundColor={colorTheme} />
+                    <NavigationBar  backgroundColor={colorTheme}
+                                    leftWord="Back"
+                                    title="Create Account"
+                                    rightWord=""
+                                    nav={this.props.navigator}
                     />
-                </View>
+                    {/* BODY */}
+                    {/* DatePicker for documentation check out
+                        https://github.com/xgfe/react-native-datepicker*/}
+                    <Text style={styles.fieldDescription}>
+                        Birthdate
+                    </Text>
+                    <View style={styles.container}>
+                        <DatePicker
+                            style={{width:200}}
+                            date={this.state.date}
+                            mode='date'
+                            placeholder='Birthday'
+                            format="MM-DD-YYYY"
+                            minDate="01-01-1900"
+                            confirmBtnText="Confirm"
+                            cancelBtnText="Cancel"
+                            onDateChange={(date) => {this.setState({date: date});}}
+                        />
+                    </View>
 
-                {/* Had to wrap each field individually since if you're more
-                    than 2 views deep TextInput is invisible (bug).       */}
+                    {/* Had to wrap each field individually since if you're more
+                        than 2 views deep TextInput is invisible (bug).       */}
 
-                {/* Claim Number Field */}
-                <Text style={styles.fieldDescription}>
-                    Claim Number
-                </Text>
-                <View style={styles.textInputWrapper}>
-                    <TextInput style ={styles.textFields}
-                        placeholder="xxxxxxx-xxxx"
-                        onChangeText={(claimNumber) => this.setState({claimNumber})}
-                    />
-                </View>
+                    {/* Claim Number Field */}
+                    <Text style={styles.fieldDescription}>
+                        Claim Number
+                    </Text>
+                    <View style={styles.textInputWrapper}>
+                        <TextInput style ={styles.textFields}
+                            placeholder="xxxxxxx-xxxx"
+                            onChangeText={(claimNumber) => this.setState({claimNumber})}
+                        />
+                    </View>
 
-                {/* Social Security Field */}
-                <Text style={styles.fieldDescription}>
-                    Social Security Number
-                </Text>
-                <View style={styles.textInputWrapper}>
-                    <TextInput style ={styles.textFields}
-                        placeholder="xxx-xx-xxxx"
-                        onChangeText={(socialSecurityNumber) => this.setState({socialSecurityNumber})}
-                    />
-                </View>
+                    {/* Social Security Field */}
+                    <Text style={styles.fieldDescription}>
+                        Social Security Number
+                    </Text>
+                    <View style={styles.textInputWrapper}>
+                        <TextInput style ={styles.textFields}
+                            placeholder="xxx-xx-xxxx"
+                            onChangeText={(socialSecurityNumber) => this.setState({socialSecurityNumber})}
+                        />
+                    </View>
 
-                {/* Username field */}
-                <Text style={styles.fieldDescription}>
-                    Username
-                </Text>
-                <View style={styles.textInputWrapper}>
-                    <TextInput style ={styles.textFields}
-                        placeholder="Username"
-                        onChangeText={(username) => this.setState({username})}
-                    />
-                </View>
+                    {/* Username field */}
+                    <Text style={styles.fieldDescription}>
+                        Username
+                    </Text>
+                    <View style={styles.textInputWrapper}>
+                        <TextInput style ={styles.textFields}
+                            placeholder="Username"
+                            onChangeText={(username) => this.setState({username})}
+                        />
+                    </View>
 
-                {/* Password fields */}
-                <Text style={styles.fieldDescription}>
-                    Password
-                </Text>
-                <View style={styles.textInputWrapper}>
-                    <TextInput style ={styles.textFields}
-                        secureTextEntry={true}
-                        placeholder="Password"
-                        onChangeText={(password) => this.setState({password})}
-                    />
-                </View>
-                <Text style={styles.fieldDescription}>
-                    Confirm Password
-                </Text>
-                <View style={styles.textInputWrapper}>
-                    <TextInput style ={styles.textFields}
-                        secureTextEntry={true}
-                        placeholder="Password"
-                        onChangeText={(passwordConf) => this.setState({passwordConf})}
-                    />
-                </View>
+                    {/* Password fields */}
+                    <Text style={styles.fieldDescription}>
+                        Password
+                    </Text>
+                    <View style={styles.textInputWrapper}>
+                        <TextInput style ={styles.textFields}
+                            secureTextEntry={true}
+                            placeholder="Password"
+                            onChangeText={(password) => this.setState({password})}
+                        />
+                    </View>
+                    <Text style={styles.fieldDescription}>
+                        Confirm Password
+                    </Text>
+                    <View style={styles.textInputWrapper}>
+                        <TextInput style ={styles.textFields}
+                            secureTextEntry={true}
+                            placeholder="Password"
+                            onChangeText={(passwordConf) => this.setState({passwordConf})}
+                        />
+                    </View>
 
-                {/* Create Account Button */}
-                <Button onPress={() => this._confirmAccountCreation()}
-                    style={styles.createAccountButton}>
-                        Create Account
-                </Button>
-            </ViewContainer>
+                    {/* Create Account Button */}
+                    <Button onPress={() => this._confirmAccountCreation()}
+                        style={styles.createAccountButton}>
+                            Create Account
+                    </Button>
+                </ViewContainer>
             </ScrollView>
         );
     }

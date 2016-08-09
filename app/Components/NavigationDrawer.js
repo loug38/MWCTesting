@@ -38,7 +38,7 @@ const menu = [
     {item: "Financial", icon: "money"},
     {item: "Medical", icon: "plus"},
     {item: "Calendar", icon: "calendar"},
-    {item: "Claims", icon: "legal"},
+    {item: "Claim Information", icon: "legal"},
     {item: "Message Center", icon: "envelope"},
 ];
 
@@ -101,8 +101,8 @@ class NavigationDrawer extends Component {
             case 'Message Center':
                 this.props.navigator.replaceWithAnimation({ident: "Message Center"});
                 break;
-            case "Claims":
-                this.props.navigator.replaceWithAnimation({ident: "Claims"});
+            case "Claim Information":
+                this.props.navigator.replaceWithAnimation({ident: "Claims", claimNum: this.state.selectedClaim.claimNumber,});
                 break;
             case 'Logout':
                 this.props.navigator.popToTop();
@@ -132,8 +132,10 @@ class NavigationDrawer extends Component {
                                    ]
                                 )}>
                                     <View style={styles.circleBackground}>
-                                        <Icon name='user' size={45} color={'#ffffff'}/>
-                                        <Text style={{color:'#ffffff', fontSize: 10}}> {this.state.selectedClaim.claimNumber} </Text>
+                                        <Icon name='file-text-o' size={40} color={'#ffffff'}/>
+                                        <Text style={{color:'#ffffff', fontSize: 10, paddingTop: 2}}>
+                                            {`#${this.state.selectedClaim.claimNumber}`}
+                                        </Text>
                                     </View>
                                </TouchableOpacity>
                                <View style={styles.identity}>
@@ -163,6 +165,19 @@ class NavigationDrawer extends Component {
 
                 {/* Menu on the bottom of the dash that hovers above the ListView */}
                 <View style={styles.bottomHoverMenu}>
+                    {/* About option */}
+                    <TouchableOpacity onPress={(event) => console.log("About")}>
+                        <View style={styles.splitIconAndInfo}>
+                            <View style={styles.iconContainer}>
+                                <Icon name='info-circle' size={30} color={'#555555'} />
+                            </View>
+                            <View style={{marginTop: 10}}>
+                                <Text style={{paddingTop: 5, fontSize: 15}}> About </Text>
+                            </View>
+                        </View>
+                    </TouchableOpacity>
+
+                    {/* Settings option */}
                     <TouchableOpacity onPress={() => console.log("Settings")}>
                         <View style={styles.splitIconAndInfo}>
                             <View style={styles.iconContainer}>
@@ -173,6 +188,8 @@ class NavigationDrawer extends Component {
                             </View>
                         </View>
                     </TouchableOpacity>
+
+                    {/* Logout option */}
                     <TouchableOpacity onPress={(event) => this._navigateToMenuItem("Logout")}>
                         <View style={styles.splitIconAndInfo}>
                             <View style={styles.iconContainer}>

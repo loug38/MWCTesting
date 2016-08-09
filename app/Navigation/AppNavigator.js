@@ -93,7 +93,8 @@ class AppNavigator extends Component {
             case "Claims":
                 return(
                     <ClaimsScreen {...globalNavigatorProps}
-                        contact={route.contact}/>
+                        contact={route.contact}
+                        claimNum={route.claimNum}/>
                 );
             default:
                 return(

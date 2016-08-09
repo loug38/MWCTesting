@@ -15,11 +15,8 @@ import DrawerLayout from 'react-native-drawer-layout';
 const colorTheme = '#007ACC';
 const claimsInfo = [
     {name: 'George Harkness', address1:  '123 Fake st.', address2: 'Woodland Hills, AU 91364',
-     extraInfo: 'none', date: '03/15/2007', claimID: 1,
+     extraInfo: 'Accident using the forklift, could be out for several months.', date: '03/15/2007', claimID: 1,
      injuries: 'Leg, Arm, Hand'},
-    {name: 'George Harkness', address1:  '123 Fake st.', address2: 'Woodland Hills, AU 91364',
-     extraInfo: 'Forward to dentist.', date: '04/1/2010', claimID: 2,
-     injuries: 'Teeth'}
 ];
 
 class ClaimsScreen extends Component{
@@ -43,39 +40,43 @@ class ClaimsScreen extends Component{
     _renderClaimsRow(claimsRow){
         return(
             <TouchableOpacity onPress={console.log('claim pressed')}>
-            <View style={styles.claimContainer}>
-                <View style={styles.rowItems}>
-                    <View style={styles.nameContainer}>
-                        <Text style={{fontSize: 10, color: "#666666"}}> Name </Text>
-                        <Text> {claimsRow.name} </Text>
+                <View style={styles.claimContainer}>
+                    <View style={styles.claimNumber}>
+                        <Text style={{fontSize: 10, color: "#666666"}}> Claim Number</Text>
+                        <Text> {this.props.claimNum} </Text>
                     </View>
-                    <View style={styles.injuryDate}>
-                        <Text style={{fontSize: 10, color: "#666666"}}> Date of injury </Text>
-                        <Text> {claimsRow.date} </Text>
+                    <View style={styles.rowItems}>
+                        <View style={styles.nameContainer}>
+                            <Text style={{fontSize: 10, color: "#666666"}}> Name </Text>
+                            <Text> {claimsRow.name} </Text>
+                        </View>
+                        <View style={styles.injuryDate}>
+                            <Text style={{fontSize: 10, color: "#666666"}}> Date of injury </Text>
+                            <Text> {claimsRow.date} </Text>
+                        </View>
                     </View>
-                </View>
 
-                <View style={styles.addressContainer}>
-                    <Text style={{fontSize: 10, color: "#666666"}}> Address </Text>
-                    <Text> {`${claimsRow.address1} \n ${claimsRow.address2}`} </Text>
-                </View>
+                    <View style={styles.addressContainer}>
+                        <Text style={{fontSize: 10, color: "#666666"}}> Address </Text>
+                        <Text> {`${claimsRow.address1} \n ${claimsRow.address2}`} </Text>
+                    </View>
 
-                <View style={styles.injuredBodyParts}>
-                    <Text style={{fontSize: 10, color: "#666666"}}> Injured Body Parts </Text>
-                    <Text> {claimsRow.injuries} </Text>
-                </View>
-                <View style={styles.rowItems}>
-                    <View style={styles.extraInfo}>
-                        <Text style={{fontSize: 10, color: "#666666"}}> Extra Information </Text>
-                        <Text> {claimsRow.extraInfo} </Text>
+                    <View style={styles.injuredBodyParts}>
+                        <Text style={{fontSize: 10, color: "#666666"}}> Injured Body Parts </Text>
+                        <Text> {claimsRow.injuries} </Text>
                     </View>
-                    <View style={{marginTop: 10, alignSelf: 'flex-end'}}>
-                        <TouchableOpacity onPress={() => console.log('recent claim activity')}>
-                            <Text style={{color: '#007AFF'}}> Recent Claim Activity </Text>
-                        </TouchableOpacity>
+                    <View style={styles.rowItems}>
+                        <View style={styles.extraInfo}>
+                            <Text style={{fontSize: 10, color: "#666666"}}> Extra Information </Text>
+                            <Text> {claimsRow.extraInfo} </Text>
+                        </View>
+                        <View style={{marginTop: 10, alignSelf: 'flex-end'}}>
+                            <TouchableOpacity onPress={() => console.log('recent claim activity')}>
+                                <Text style={{color: '#007AFF'}}> Recent Claim Activity </Text>
+                            </TouchableOpacity>
+                        </View>
                     </View>
                 </View>
-            </View>
             </TouchableOpacity>
         );
     }
@@ -94,7 +95,7 @@ class ClaimsScreen extends Component{
                     drawerPosition={DrawerLayout.positions.left}
                     ref={(drawer) => {return this.drawer = drawer}}
                     renderNavigationView={() => navigationView}>
-                    <NavigationBarDrawer backgroundColor={colorTheme} title="Claims" action={() => this.drawer.openDrawer()} />
+                    <NavigationBarDrawer backgroundColor={colorTheme} title="Claim Information" action={() => this.drawer.openDrawer()} />
                     <View style={styles.container}>
                         <ListView
                             dataSource={this.state.claimsDataSource}
@@ -118,9 +119,16 @@ const styles = StyleSheet.create({
     claimContainer: {
         flex: 1,
         backgroundColor: '#ffffff',
-        padding: 10,
+        paddingLeft: 10,
+        paddingRight: 10,
+        paddingTop: 10,
+        paddingBottom: 25,
         marginTop: 5,
-        marginBottom: 5,
+    },
+
+    claimNumber: {
+        flexDirection: 'column',
+        alignItems: 'center',
     },
 
     nameContainer: {
@@ -136,24 +144,21 @@ const styles = StyleSheet.create({
         flex: 1,
         flexDirection: 'row',
         justifyContent: 'space-between',
-
     },
 
     addressContainer: {
         margin: 5,
-
     },
 
     injuredBodyParts: {
         margin: 5,
-
     },
 
     extraInfo: {
-        flex: 0.75,
+        flex: 0.8,
         alignSelf: 'flex-start',
         margin: 5,
-
+        backgroundColor: 'transparent',
     },
 });
 
