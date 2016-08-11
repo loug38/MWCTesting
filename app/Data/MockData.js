@@ -6,10 +6,10 @@ import {View, Text, StyleSheet } from 'react-native';
 
 var currentCase = ""
 
-class MockData{
+class MockData extends Component{
 
     static data = [
-        {'case': {
+        {'claim': {
             'claimNumber': '1234',
             'claimOwner': 'George Harkness',
             'dataOfInjury': '10-20-2004',
@@ -28,8 +28,8 @@ class MockData{
             },
         }, 'claimNumber': '1234'},
 
-        {'case': {
-            'claimNumber': '1234',
+        {'claim': {
+            'claimNumber': '2345',
             'claimOwner': 'George Harkness',
             'dataOfInjury': '10-20-2004',
             'address': '6121 Glade Ave Woodland Hills, AU 91367',
@@ -45,10 +45,10 @@ class MockData{
                 'contact': {'name': "Dinah Lance",  'job': "Nurse",             'contact':"tbc@gmail.com",  'phone': '(818) 744-1908'},
                 'contact': {'name': "Oliver Queen", 'job': "Case Manager",      'contact':"tga@gmail.com",  'phone': '(818) 744-1908'},
             },
-        }, 'claimNumber': '1234'},
+        }, 'claimNumber': '2345'},
 
-        {'case': {
-            'claimNumber': '1234',
+        {'claim': {
+            'claimNumber': '3456',
             'claimOwner': 'George Harkness',
             'dataOfInjury': '10-20-2004',
             'address': '6121 Glade Ave Woodland Hills, AU 91367',
@@ -64,16 +64,22 @@ class MockData{
                 'contact': {'name': "Dinah Lance",  'job': "Nurse",             'contact':"tbc@gmail.com",  'phone': '(818) 744-1908'},
                 'contact': {'name': "Oliver Queen", 'job': "Case Manager",      'contact':"tga@gmail.com",  'phone': '(818) 744-1908'},
             },
-        }, 'claimNumber': '1234'},
+        }, 'claimNumber': '3456'},
     ];
-    
-    
-    constructor(){
-        currentCase=data[0];
+
+    constructor(props) {
+        super(props);
+        this.state = { 
+            currentClaim: data[0] 
+        };
     }
 
     static getCurrentClaim(){
-        return(this.currentCase);
+        return(this.state.currentClaim);
+    }
+
+    static getCurrentClaimName(){
+        return(this.state.currentClaim.claim.claimOwner);
     }
 
     static getClaim(claim){
@@ -81,6 +87,7 @@ class MockData{
     }
 
     static chooseDifferentClaim(claim){
+        this.state.currentClaim=this.data[claim];
         return(this.data[claim].claimNumber);
     }
 

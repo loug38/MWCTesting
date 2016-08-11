@@ -43,8 +43,6 @@ const menu = [
     {item: "Message Center", icon: "envelope"},
 ];
 
-var claimData = ClaimData.getCurrentClaim();
-
 //Main navigation for the app
 class NavigationDrawer extends Component {
     //Necessary constructor for ListView. The code is really wonky,
@@ -58,7 +56,7 @@ class NavigationDrawer extends Component {
         this.state ={
             menuDataSource: ds.cloneWithRows(menu),
             caseDataSource: ds.cloneWithRows(claims),
-            selectedClaim: claims[0],
+            claimNumber: ClaimData.getClaim(0),
         };
     }
 
@@ -105,7 +103,7 @@ class NavigationDrawer extends Component {
                 this.props.navigator.replaceWithAnimation({ident: "Message Center"});
                 break;
             case "Claim Information":
-                this.props.navigator.replaceWithAnimation({ident: "Claims", claimNum: this.state.selectedClaim.claimNumber,});
+                this.props.navigator.replaceWithAnimation({ident: "Claims", claim: ClaimData.getCurrentClaim()});
                 break;
             case 'Logout':
                 this.props.navigator.popToTop();
@@ -114,6 +112,11 @@ class NavigationDrawer extends Component {
 
     retFunction(){
         return (navigationView);
+    }
+
+    _changeClaim(claim){
+        this.setState({claimData: ClaimData.chooseDifferentClaim(claim)});
+        claimData = ClaimData.getCurrentClaim;
     }
 
     render(){
@@ -129,21 +132,24 @@ class NavigationDrawer extends Component {
                                    "Pick a claim",
                                    "Select a claim from below",
                                    [
-                                       {text: ClaimData.getClaim(1), onPress: () => this.setState(ClaimData.chooseDifferentClaim(1))},
-                                       {text: ClaimData.getClaim(2), onPress: () => this.setState(ClaimData.chooseDifferentClaim(2))},
-                                       {text: ClaimData.getClaim(3), onPress: () => this.setState(ClaimData.chooseDifferentClaim(3))},
+                                       {text: ClaimData.getClaim(0), onPress: () => this.setState({claimNumber: ClaimData.chooseDifferentClaim(0)})},//this._changeClaim(0)},
+                                       {text: ClaimData.getClaim(1), onPress: () => this.setState({claimNumber: ClaimData.chooseDifferentClaim(1)})},//this._changeClaim(1)},
+                                       {text: ClaimData.getClaim(2), onPress: () => this.setState({claimNumber: ClaimData.chooseDifferentClaim(2)})},//this._changeClaim(2)},
                                    ]
                                 )}>
                                     <View style={styles.circleBackground}>
                                         <Icon name='file-text-o' size={40} color={'#ffffff'}/>
                                         <Text style={{color:'#ffffff', fontSize: 10, paddingTop: 2}}>
-                                            {`#${this.state.selectedClaim.claimNumber}`}
+                                            {`#${this.state.claimNumber}`}
                                         </Text>
                                     </View>
                                </TouchableOpacity>
                                <View style={styles.identity}>
                                     <Text style={{fontSize: 12, fontWeight: 'bold', color: '#ffffff', backgroundColor: 'transparent'}}>
                                         First Last
+                                    </Text>
+                                    <Text>
+                                        {ClaimData.getCurrentClaimName()};
                                     </Text>
                                     <Text style={{fontSize: 12, color: '#ffffff', backgroundColor: 'transparent'}}>
                                         username@gmail.com

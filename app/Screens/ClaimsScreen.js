@@ -8,6 +8,7 @@ import ViewContainer from '../../app/Components/ViewContainer';
 import StatusBarFiller from '../../app/Components/StatusBarFiller';
 import NavigationBarDrawer from '../../app/Components/NavigationBarDrawer';
 import NavigationDrawer from '../../app/Components/NavigationDrawer';
+import ClaimData from '../../app/Data/MockData';
 
 //packages
 import DrawerLayout from 'react-native-drawer-layout';
@@ -43,7 +44,7 @@ class ClaimsScreen extends Component{
                 <View style={styles.claimContainer}>
                     <View style={styles.claimNumber}>
                         <Text style={{fontSize: 10, color: "#666666"}}> Claim Number</Text>
-                        <Text> {this.props.claimNum} </Text>
+                        <Text> {this.props.claim.getCurrentClaimName()} </Text>
                     </View>
                     <View style={styles.rowItems}>
                         <View style={styles.nameContainer}>
