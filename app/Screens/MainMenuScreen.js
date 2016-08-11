@@ -30,7 +30,7 @@ const feedInfo = [
      associatedContact: 'Hal Jordan',   associatedContactJob: 'Claim Examiner',
      dateRecieved: '08/01/16',          timeRecieved: '6:45 PM'},
 
-    {category: 'Claims',                data: 'you have a new claim.',
+    {category: 'Claims',                data: 'you have a new claim update.',
      associatedContact: '',             associatedContactJob: '',
      dateRecieved: '07/23/16',          timeRecieved: '10:25 AM'},
 

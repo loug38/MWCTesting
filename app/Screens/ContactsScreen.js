@@ -14,6 +14,7 @@ import ViewContainer from '../../app/Components/ViewContainer';
 import StatusBarFiller from '../../app/Components/StatusBarFiller';
 import NavigationBarDrawer from '../../app/Components/NavigationBarDrawer';
 import NavigationDrawer from '../../app/Components/NavigationDrawer';
+import ClaimData from '../../app/Data/MockData';
 
 //Packages
 import Icon from 'react-native-vector-icons/FontAwesome';
@@ -134,6 +135,7 @@ class ContactsScreen extends Component{
 
     render(){
         var navigationView = this._renderDrawer();
+        var currentCase = ClaimData.getCurrentCase();
         return(
             <View style={styles.container}>
                 <DrawerLayout
@@ -143,6 +145,9 @@ class ContactsScreen extends Component{
                     renderNavigationView={() => navigationView}>
                 <StatusBarFiller backgroundColor={colorTheme} />
                 <NavigationBarDrawer backgroundColor={colorTheme} title="Contacts" action={() => this.drawer.openDrawer()} />
+                <Text>
+                    {currentCase.claimNumber}
+                </Text>
                 <ListView
                     dataSource={this.state.contactsDataSource}
                     renderRow={(contact) => {return this._renderContactRow(contact)}}

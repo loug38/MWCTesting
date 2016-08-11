@@ -17,6 +17,7 @@ import {StyleSheet, Text, View,TouchableOpacity, ScrollView, Alert,
 import ViewContainer from '../../app/Components/ViewContainer';
 import StatusBarFiller from '../../app/Components/StatusBarFiller';
 import MainMenu from '../../app/Screens/MainMenuScreen';
+import ClaimData from '../../app/Data/MockData';
 
 //packages
 import Icon from 'react-native-vector-icons/FontAwesome';
@@ -27,9 +28,9 @@ const colorTheme = '#007ACC';
 const window = Dimensions.get('window');
 
 const claims = [
-    {claimNumber: "12345"},
-    {claimNumber: "23456"},
-    {claimNumber: "34567"},
+    {claimNumber: "1234"},
+    {claimNumber: "2345"},
+    {claimNumber: "3456"},
 ];
 
 const menu = [
@@ -41,6 +42,8 @@ const menu = [
     {item: "Claim Information", icon: "legal"},
     {item: "Message Center", icon: "envelope"},
 ];
+
+var claimData = ClaimData.getCurrentClaim();
 
 //Main navigation for the app
 class NavigationDrawer extends Component {
@@ -126,9 +129,9 @@ class NavigationDrawer extends Component {
                                    "Pick a claim",
                                    "Select a claim from below",
                                    [
-                                       {text: "#12345", onPress: () => this.setState({selectedClaim: claims[0]})},
-                                       {text: "#23456", onPress: () => this.setState({selectedClaim: claims[1]})},
-                                       {text: "#34567", onPress: () => this.setState({selectedClaim: claims[2]})},
+                                       {text: ClaimData.getClaim(1), onPress: () => this.setState(ClaimData.chooseDifferentClaim(1))},
+                                       {text: ClaimData.getClaim(2), onPress: () => this.setState(ClaimData.chooseDifferentClaim(2))},
+                                       {text: ClaimData.getClaim(3), onPress: () => this.setState(ClaimData.chooseDifferentClaim(3))},
                                    ]
                                 )}>
                                     <View style={styles.circleBackground}>
