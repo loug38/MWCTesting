@@ -25,7 +25,7 @@ const contacts = [
     {name: "Hal Jordan", job: "Claims Examiner", contact:"gl@gmail.com"},
     {name: "Barry Allen", job: "Physician", contact:"tf@gmail.com"},
     {name: "Guy Gardner", job: "Employer", contact:"gl2@gmail.com"},
-    {name: "Wally West", job: "Supervisor", contact:"tf2@gmail.com"},
+    {name: "Bruce Wayne", job: "Supervisor", contact:"bm@gmail.com"},
     {name: "Dinah Lance", job: "Nurse Case Manager", contact:"tbc@gmail.com"}
 ]
 
