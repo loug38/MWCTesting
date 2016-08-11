@@ -132,7 +132,7 @@ class MainMenuScreen extends Component {
                 <View style={styles.feedCell}>
                     <View style={styles.splitIconAndInfo}>
                         <View style={styles.iconContainer}>
-                            <Icon name={icon} size={40} color={colorTheme} />
+                            <Icon name={icon} size={50} color={colorTheme} />
                         </View>
                         <View style={styles.feedData}>
                             <Text style={{color: '#666666'}}> {feedInfo.associatedContact} </Text>
@@ -202,8 +202,11 @@ const styles = StyleSheet.create({
         flex: 1,
         flexDirection: 'row',
         backgroundColor: '#ffffff',
-        paddingTop: 5,
-        paddingBottom: 5,
+        padding: 10,
+        marginTop: 10,
+        marginLeft: 10,
+        marginRight: 10,
+        borderRadius: 5,
     },
 
     feedContainer: {
