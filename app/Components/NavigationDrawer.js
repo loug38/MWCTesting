@@ -27,12 +27,6 @@ const colorTheme = '#007ACC';
 //globals
 const window = Dimensions.get('window');
 
-const claims = [
-    {claimNumber: "1234"},
-    {claimNumber: "2345"},
-    {claimNumber: "3456"},
-];
-
 const menu = [
     {item: "News Feed", icon: "newspaper-o"},
     {item: "Contacts", icon: "group"},
@@ -55,7 +49,6 @@ class NavigationDrawer extends Component {
         var ds2 = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 != r2});
         this.state ={
             menuDataSource: ds.cloneWithRows(menu),
-            caseDataSource: ds.cloneWithRows(claims),
             claimNumber: ClaimData.getClaim(0),
         };
     }
@@ -147,9 +140,6 @@ class NavigationDrawer extends Component {
                             <View style={styles.identity}>
                                 <Text style={{fontSize: 12, fontWeight: 'bold', color: '#ffffff', backgroundColor: 'transparent'}}>
                                     First Last
-                                </Text>
-                                <Text>
-                                    {ClaimData.getCurrentClaimName()};
                                 </Text>
                                 <Text style={{fontSize: 12, color: '#ffffff', backgroundColor: 'transparent'}}>
                                     username@gmail.com

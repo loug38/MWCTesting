@@ -44,7 +44,7 @@ class ClaimsScreen extends Component{
                 <View style={styles.claimContainer}>
                     <View style={styles.claimNumber}>
                         <Text style={{fontSize: 10, color: "#666666"}}> Claim Number</Text>
-                        <Text> {this.props.claim.getCurrentClaimName()} </Text>
+                        <Text> CLAIM NAME </Text>
                     </View>
                     <View style={styles.rowItems}>
                         <View style={styles.nameContainer}>

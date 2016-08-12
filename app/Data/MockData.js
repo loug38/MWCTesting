@@ -64,22 +64,25 @@ const data = [
     }, 'claimNumber': '3456'},
 ];
 
+var currentC = data[0];
+
 class MockData extends Component{
     constructor() {
         super();
+        currentC = data[0];
         this.state = { 
             currentClaim: data[0], 
         };
     }
 
-    render() {};
+    render(){this.setState({currentClaim: data[0]});}
 
     static getCurrentClaim(){
         return(this.state.currentClaim);
     }
 
     static getCurrentClaimName(){
-        return(this.state.currentClaim);
+        return(this.currentC.claim);
     }
 
     static getClaim(claim){
@@ -87,7 +90,7 @@ class MockData extends Component{
     }
 
     static chooseDifferentClaim(claim){
-        this.setState({currentClaim: data[claim]});
+        this.currentC = data[claim];
         return(data[claim].claimNumber);
     }
 
