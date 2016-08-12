@@ -128,33 +128,33 @@ class NavigationDrawer extends Component {
                     <View style={styles.topImage}>
                         <Image style={{resizeMode: 'cover', width: 300, height: 150, flex: 1}}
                                source={require('../../img/SanFranciscoBackground.png')}>
-                               <TouchableOpacity onPress={() => Alert.alert(
-                                   "Pick a claim",
-                                   "Select a claim from below",
-                                   [
-                                       {text: ClaimData.getClaim(0), onPress: () => this.setState({claimNumber: ClaimData.chooseDifferentClaim(0)})},//this._changeClaim(0)},
-                                       {text: ClaimData.getClaim(1), onPress: () => this.setState({claimNumber: ClaimData.chooseDifferentClaim(1)})},//this._changeClaim(1)},
-                                       {text: ClaimData.getClaim(2), onPress: () => this.setState({claimNumber: ClaimData.chooseDifferentClaim(2)})},//this._changeClaim(2)},
-                                   ]
-                                )}>
-                                    <View style={styles.circleBackground}>
-                                        <Icon name='file-text-o' size={40} color={'#ffffff'}/>
-                                        <Text style={{color:'#ffffff', fontSize: 10, paddingTop: 2}}>
-                                            {`#${this.state.claimNumber}`}
-                                        </Text>
-                                    </View>
-                               </TouchableOpacity>
-                               <View style={styles.identity}>
-                                    <Text style={{fontSize: 12, fontWeight: 'bold', color: '#ffffff', backgroundColor: 'transparent'}}>
-                                        First Last
+                            <TouchableOpacity onPress={() => Alert.alert(
+                                "Pick a claim",
+                                "Select a claim from below",
+                                [
+                                    {text: ClaimData.getClaim(0), onPress: () => this.setState({claimNumber: ClaimData.chooseDifferentClaim(0)})},//this._changeClaim(0)},
+                                    {text: ClaimData.getClaim(1), onPress: () => this.setState({claimNumber: ClaimData.chooseDifferentClaim(1)})},//this._changeClaim(1)},
+                                    {text: ClaimData.getClaim(2), onPress: () => this.setState({claimNumber: ClaimData.chooseDifferentClaim(2)})},//this._changeClaim(2)},
+                               ]
+                            )}>
+                                <View style={styles.circleBackground}>
+                                    <Icon name='file-text-o' size={40} color={'#ffffff'}/>
+                                    <Text style={{color:'#ffffff', fontSize: 10, paddingTop: 2}}>
+                                        {`#${this.state.claimNumber}`}
                                     </Text>
-                                    <Text>
-                                        {ClaimData.getCurrentClaimName()};
-                                    </Text>
-                                    <Text style={{fontSize: 12, color: '#ffffff', backgroundColor: 'transparent'}}>
-                                        username@gmail.com
-                                    </Text>
-                               </View>
+                                </View>
+                            </TouchableOpacity>
+                            <View style={styles.identity}>
+                                <Text style={{fontSize: 12, fontWeight: 'bold', color: '#ffffff', backgroundColor: 'transparent'}}>
+                                    First Last
+                                </Text>
+                                <Text>
+                                    {ClaimData.getCurrentClaimName()};
+                                </Text>
+                                <Text style={{fontSize: 12, color: '#ffffff', backgroundColor: 'transparent'}}>
+                                    username@gmail.com
+                                </Text>
+                            </View>
                         </Image>
                     </View>
 

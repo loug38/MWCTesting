@@ -4,95 +4,95 @@
 import React, { Component } from 'react';
 import {View, Text, StyleSheet } from 'react-native';
 
-var currentCase = ""
+var currentCase = '';
+const data = [
+    {'claim': {
+        'claimNumber': '1234',
+        'claimOwner': 'George Harkness',
+        'dataOfInjury': '10-20-2004',
+        'address': '6121 Glade Ave Woodland Hills, AU 91367',
+        'injuredBodyParts': 'hand,leg, arm',
+        'extraInformation': 'Hurt using the forklift, could be out of works for months.',
+        'socialSecurityNumber': '123456789',
+        'dateOfBirth': '08-24-1964',
+        'contacts': {
+            'contact': {'name': "Hal Jordan",   'job': "Claims Examiner",   'contact':"gl@gmail.com",   'phone': '(818) 744-1908'},
+            'contact': {'name': "Barry Allen",  'job': "Physician",         'contact':"tf@gmail.com",   'phone': '(818) 744-1908'},
+            'contact': {'name': "Guy Gardner",  'job': "Employer",          'contact':"gl2@gmail.com",  'phone': '(818) 744-1908'},
+            'contact': {'name': "Wally West",   'job': "Supervisor",        'contact':"tf2@gmail.com",  'phone': '(818) 744-1908'},
+            'contact': {'name': "Dinah Lance",  'job': "Nurse",             'contact':"tbc@gmail.com",  'phone': '(818) 744-1908'},
+            'contact': {'name': "Oliver Queen", 'job': "Case Manager",      'contact':"tga@gmail.com",  'phone': '(818) 744-1908'},
+        },
+    }, 'claimNumber': '1234'},
+
+    {'claim': {
+        'claimNumber': '2345',
+        'claimOwner': 'George Harkness',
+        'dataOfInjury': '10-20-2004',
+        'address': '6121 Glade Ave Woodland Hills, AU 91367',
+        'injuredBodyParts': 'hand,leg, arm',
+        'extraInformation': 'Hurt using the forklift, could be out of works for months.',
+        'socialSecurityNumber': '123456789',
+        'dateOfBirth': '08-24-1964',
+        'contacts': {
+            'contact': {'name': "Hal Jordan",   'job': "Claims Examiner",   'contact':"gl@gmail.com",   'phone': '(818) 744-1908'},
+            'contact': {'name': "Barry Allen",  'job': "Physician",         'contact':"tf@gmail.com",   'phone': '(818) 744-1908'},
+            'contact': {'name': "Guy Gardner",  'job': "Employer",          'contact':"gl2@gmail.com",  'phone': '(818) 744-1908'},
+            'contact': {'name': "Wally West",   'job': "Supervisor",        'contact':"tf2@gmail.com",  'phone': '(818) 744-1908'},
+            'contact': {'name': "Dinah Lance",  'job': "Nurse",             'contact':"tbc@gmail.com",  'phone': '(818) 744-1908'},
+            'contact': {'name': "Oliver Queen", 'job': "Case Manager",      'contact':"tga@gmail.com",  'phone': '(818) 744-1908'},
+        },
+    }, 'claimNumber': '2345'},
+
+    {'claim': {
+        'claimNumber': '3456',
+        'claimOwner': 'George Harkness',
+        'dataOfInjury': '10-20-2004',
+        'address': '6121 Glade Ave Woodland Hills, AU 91367',
+        'injuredBodyParts': 'hand,leg, arm',
+        'extraInformation': 'Hurt using the forklift, could be out of works for months.',
+        'socialSecurityNumber': '123456789',
+        'dateOfBirth': '08-24-1964',
+        'contacts': {
+            'contact': {'name': "Hal Jordan",   'job': "Claims Examiner",   'contact':"gl@gmail.com",   'phone': '(818) 744-1908'},
+            'contact': {'name': "Barry Allen",  'job': "Physician",         'contact':"tf@gmail.com",   'phone': '(818) 744-1908'},
+            'contact': {'name': "Guy Gardner",  'job': "Employer",          'contact':"gl2@gmail.com",  'phone': '(818) 744-1908'},
+            'contact': {'name': "Wally West",   'job': "Supervisor",        'contact':"tf2@gmail.com",  'phone': '(818) 744-1908'},
+            'contact': {'name': "Dinah Lance",  'job': "Nurse",             'contact':"tbc@gmail.com",  'phone': '(818) 744-1908'},
+            'contact': {'name': "Oliver Queen", 'job': "Case Manager",      'contact':"tga@gmail.com",  'phone': '(818) 744-1908'},
+        },
+    }, 'claimNumber': '3456'},
+];
 
 class MockData extends Component{
-
-    static data = [
-        {'claim': {
-            'claimNumber': '1234',
-            'claimOwner': 'George Harkness',
-            'dataOfInjury': '10-20-2004',
-            'address': '6121 Glade Ave Woodland Hills, AU 91367',
-            'injuredBodyParts': 'hand,leg, arm',
-            'extraInformation': 'Hurt using the forklift, could be out of works for months.',
-            'socialSecurityNumber': '123456789',
-            'dateOfBirth': '08-24-1964',
-            'contacts': {
-                'contact': {'name': "Hal Jordan",   'job': "Claims Examiner",   'contact':"gl@gmail.com",   'phone': '(818) 744-1908'},
-                'contact': {'name': "Barry Allen",  'job': "Physician",         'contact':"tf@gmail.com",   'phone': '(818) 744-1908'},
-                'contact': {'name': "Guy Gardner",  'job': "Employer",          'contact':"gl2@gmail.com",  'phone': '(818) 744-1908'},
-                'contact': {'name': "Wally West",   'job': "Supervisor",        'contact':"tf2@gmail.com",  'phone': '(818) 744-1908'},
-                'contact': {'name': "Dinah Lance",  'job': "Nurse",             'contact':"tbc@gmail.com",  'phone': '(818) 744-1908'},
-                'contact': {'name': "Oliver Queen", 'job': "Case Manager",      'contact':"tga@gmail.com",  'phone': '(818) 744-1908'},
-            },
-        }, 'claimNumber': '1234'},
-
-        {'claim': {
-            'claimNumber': '2345',
-            'claimOwner': 'George Harkness',
-            'dataOfInjury': '10-20-2004',
-            'address': '6121 Glade Ave Woodland Hills, AU 91367',
-            'injuredBodyParts': 'hand,leg, arm',
-            'extraInformation': 'Hurt using the forklift, could be out of works for months.',
-            'socialSecurityNumber': '123456789',
-            'dateOfBirth': '08-24-1964',
-            'contacts': {
-                'contact': {'name': "Hal Jordan",   'job': "Claims Examiner",   'contact':"gl@gmail.com",   'phone': '(818) 744-1908'},
-                'contact': {'name': "Barry Allen",  'job': "Physician",         'contact':"tf@gmail.com",   'phone': '(818) 744-1908'},
-                'contact': {'name': "Guy Gardner",  'job': "Employer",          'contact':"gl2@gmail.com",  'phone': '(818) 744-1908'},
-                'contact': {'name': "Wally West",   'job': "Supervisor",        'contact':"tf2@gmail.com",  'phone': '(818) 744-1908'},
-                'contact': {'name': "Dinah Lance",  'job': "Nurse",             'contact':"tbc@gmail.com",  'phone': '(818) 744-1908'},
-                'contact': {'name': "Oliver Queen", 'job': "Case Manager",      'contact':"tga@gmail.com",  'phone': '(818) 744-1908'},
-            },
-        }, 'claimNumber': '2345'},
-
-        {'claim': {
-            'claimNumber': '3456',
-            'claimOwner': 'George Harkness',
-            'dataOfInjury': '10-20-2004',
-            'address': '6121 Glade Ave Woodland Hills, AU 91367',
-            'injuredBodyParts': 'hand,leg, arm',
-            'extraInformation': 'Hurt using the forklift, could be out of works for months.',
-            'socialSecurityNumber': '123456789',
-            'dateOfBirth': '08-24-1964',
-            'contacts': {
-                'contact': {'name': "Hal Jordan",   'job': "Claims Examiner",   'contact':"gl@gmail.com",   'phone': '(818) 744-1908'},
-                'contact': {'name': "Barry Allen",  'job': "Physician",         'contact':"tf@gmail.com",   'phone': '(818) 744-1908'},
-                'contact': {'name': "Guy Gardner",  'job': "Employer",          'contact':"gl2@gmail.com",  'phone': '(818) 744-1908'},
-                'contact': {'name': "Wally West",   'job': "Supervisor",        'contact':"tf2@gmail.com",  'phone': '(818) 744-1908'},
-                'contact': {'name': "Dinah Lance",  'job': "Nurse",             'contact':"tbc@gmail.com",  'phone': '(818) 744-1908'},
-                'contact': {'name': "Oliver Queen", 'job': "Case Manager",      'contact':"tga@gmail.com",  'phone': '(818) 744-1908'},
-            },
-        }, 'claimNumber': '3456'},
-    ];
-
-    constructor(props) {
-        super(props);
+    constructor() {
+        super();
         this.state = { 
-            currentClaim: data[0] 
+            currentClaim: data[0], 
         };
     }
+
+    render() {};
 
     static getCurrentClaim(){
         return(this.state.currentClaim);
     }
 
     static getCurrentClaimName(){
-        return(this.state.currentClaim.claim.claimOwner);
+        return(this.state.currentClaim);
     }
 
     static getClaim(claim){
-        return(this.data[claim].claimNumber);
+        return(data[claim].claimNumber);
     }
 
     static chooseDifferentClaim(claim){
-        this.state.currentClaim=this.data[claim];
-        return(this.data[claim].claimNumber);
+        this.setState({currentClaim: data[claim]});
+        return(data[claim].claimNumber);
     }
 
     static getClaimsList(){
-        return(this.data);
+        return(data);
     }
 }
 
