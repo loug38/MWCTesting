@@ -96,7 +96,8 @@ class NavigationDrawer extends Component {
                 this.props.navigator.replaceWithAnimation({ident: "Message Center"});
                 break;
             case "Claim Information":
-                this.props.navigator.replaceWithAnimation({ident: "Claims", claim: ClaimData.getCurrentClaim()});
+                this.props.navigator.replaceWithAnimation({ident: "Claims", 
+                                                           claim: ClaimData.getCurrentClaim()});
                 break;
             case 'Logout':
                 this.props.navigator.popToTop();
@@ -125,9 +126,12 @@ class NavigationDrawer extends Component {
                                 "Pick a claim",
                                 "Select a claim from below",
                                 [
-                                    {text: ClaimData.getClaim(0), onPress: () => this.setState({claimNumber: ClaimData.chooseDifferentClaim(0)})},//this._changeClaim(0)},
-                                    {text: ClaimData.getClaim(1), onPress: () => this.setState({claimNumber: ClaimData.chooseDifferentClaim(1)})},//this._changeClaim(1)},
-                                    {text: ClaimData.getClaim(2), onPress: () => this.setState({claimNumber: ClaimData.chooseDifferentClaim(2)})},//this._changeClaim(2)},
+                                    {text: ClaimData.getClaim(0), 
+                                     onPress: () => this.setState({claimNumber: ClaimData.chooseDifferentClaim(0)})},
+                                    {text: ClaimData.getClaim(1), 
+                                     onPress: () => this.setState({claimNumber: ClaimData.chooseDifferentClaim(1)})},
+                                    {text: ClaimData.getClaim(2), 
+                                     onPress: () => this.setState({claimNumber: ClaimData.chooseDifferentClaim(2)})},
                                ]
                             )}>
                                 <View style={styles.circleBackground}>
@@ -138,10 +142,10 @@ class NavigationDrawer extends Component {
                                 </View>
                             </TouchableOpacity>
                             <View style={styles.identity}>
-                                <Text style={{fontSize: 12, fontWeight: 'bold', color: '#ffffff', backgroundColor: 'transparent'}}>
+                                <Text style={styles.firstAndLastName}>
                                     First Last
                                 </Text>
-                                <Text style={{fontSize: 12, color: '#ffffff', backgroundColor: 'transparent'}}>
+                                <Text style={styles.username}>
                                     username@gmail.com
                                 </Text>
                             </View>
@@ -276,6 +280,19 @@ const styles = StyleSheet.create({
         justifyContent: 'flex-start',
         alignItems: 'stretch',
         flex: 1,
+    },
+
+    firstAndLastName: {
+        fontSize: 12, 
+        fontWeight: 'bold', 
+        color: '#ffffff', 
+        backgroundColor: 'transparent'
+    },
+
+    username: {
+        fontSize: 12, 
+        color: '#ffffff', 
+        backgroundColor: 'transparent'
     },
 
     bottomHoverMenu: {
