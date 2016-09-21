@@ -17,6 +17,7 @@ import android.view.Gravity;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.facebook.csslayout.FloatUtil;
 import com.facebook.react.uimanager.ReactCompoundView;
 
 public class ReactTextView extends TextView implements ReactCompoundView {
@@ -28,6 +29,8 @@ public class ReactTextView extends TextView implements ReactCompoundView {
   private int mDefaultGravityHorizontal;
   private int mDefaultGravityVertical;
   private boolean mTextIsSelectable;
+  private float mLineHeight = Float.NaN;
+  private int mTextAlign = Gravity.NO_GRAVITY;
 
   public ReactTextView(Context context) {
     super(context);
@@ -45,6 +48,27 @@ public class ReactTextView extends TextView implements ReactCompoundView {
       setLayoutParams(EMPTY_LAYOUT_PARAMS);
     }
     setText(update.getText());
+    setPadding(
+      (int) Math.ceil(update.getPaddingLeft()),
+      (int) Math.ceil(update.getPaddingTop()),
+      (int) Math.ceil(update.getPaddingRight()),
+      (int) Math.ceil(update.getPaddingBottom()));
+
+    float nextLineHeight = update.getLineHeight();
+    if (!FloatUtil.floatsEqual(mLineHeight, nextLineHeight)) {
+      mLineHeight = nextLineHeight;
+      if (Float.isNaN(mLineHeight)) { // NaN will be used if property gets reset
+        setLineSpacing(0, 1);
+      } else {
+        setLineSpacing(mLineHeight, 0);
+      }
+    }
+
+    int nextTextAlign = update.getTextAlign();
+    if (mTextAlign != nextTextAlign) {
+      mTextAlign = nextTextAlign;
+    }
+    setGravityHorizontal(mTextAlign);
   }
 
   @Override
